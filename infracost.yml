@@ -1,0 +1,42 @@
+version: 0.1
+projects:
+  - name: root
+    path: .
+    terraform_var_files:
+      - terraform.tfvars
+  - name: aws-compute
+    path: ./modules/aws/compute
+    terraform_var_files:
+      - ../../terraform.tfvars
+  - name: aws-networking
+    path: ./modules/aws/networking
+    terraform_var_files:
+      - ../../terraform.tfvars
+  - name: aws-database
+    path: ./modules/aws/database
+    terraform_var_files:
+      - ../../terraform.tfvars
+  - name: aws-load_balancer
+    path: ./modules/aws/load_balancer
+    terraform_var_files:
+      - ../../terraform.tfvars
+  - name: google-networking
+    path: ./modules/google/networking
+    terraform_var_files:
+      - ../../terraform.tfvars
+  - name: google-compute
+    path: ./modules/google/compute
+    terraform_var_files:
+      - ../../terraform.tfvars
+  - name: google-database
+    path: ./modules/google/database
+    terraform_var_files:
+      - ../../terraform.tfvars
+  - name: google-load_balancer
+    path: ./modules/google/load_balancer
+    terraform_var_files:
+      - ../../terraform.tfvars
+  - name: route53_failover
+    path: ./modules/route53_failover
+    terraform_var_files:
+      - ../../terraform.tfvars

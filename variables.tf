@@ -263,3 +263,187 @@ variable "compute_secondary_labels" {
   type        = map(string)
   default     = {}
 }
+
+# modules/google/database
+variable "database_secondary_name" {
+  description = "Nome risorsa DB GCP"
+  type        = string
+}
+
+variable "database_secondary_version" {
+  description = "Versione del database GCP (es. MYSQL_8_0)"
+  type        = string
+}
+
+variable "database_secondary_tier" {
+  description = "Tier macchina database GCP (es. db-f1-micro)"
+  type        = string
+}
+
+variable "database_secondary_availability_type" {
+  description = "STANDARD o ZONAL"
+  type        = string
+}
+
+variable "database_secondary_disk_size" {
+  description = "Storage DB in GB"
+  type        = number
+}
+
+variable "database_secondary_disk_type" {
+  description = "Tipo disco: PD_SSD o PD_HDD"
+  type        = string
+}
+
+variable "database_secondary_backup" {
+  description = "Abilitare backup"
+  type        = bool
+}
+
+variable "database_secondary_db_name" {
+  description = "Nome del database"
+  type        = string
+}
+
+variable "database_secondary_username" {
+  description = "Username DB"
+  type        = string
+}
+
+variable "database_secondary_password" {
+  description = "Password DB"
+  type        = string
+  sensitive   = true
+}
+
+variable "authorized_network_name" {
+  description = "Nome della rete autorizzata per connettersi al DB (GCP)"
+  type        = string
+}
+
+# modules/google/load_balancer - GOOGLE
+variable "lb_secondary_name" {
+  description = "Nome base per il Load Balancer GCP"
+  type        = string
+}
+
+variable "lb_secondary_instance_group_self_link" {
+  description = "Self link del managed instance group GCP"
+  type        = string
+}
+
+variable "lb_secondary_backend_protocol" {
+  description = "Protocollo del backend (es. HTTP)"
+  type        = string
+}
+
+variable "lb_secondary_backend_port_name" {
+  description = "Nome porta del backend (es. http)"
+  type        = string
+}
+
+variable "lb_secondary_backend_timeout_sec" {
+  description = "Timeout del backend in secondi"
+  type        = number
+}
+
+variable "lb_secondary_enable_cdn" {
+  description = "Abilitare CDN per GCP Load Balancer"
+  type        = bool
+}
+
+# Health Check
+variable "lb_secondary_health_path" {
+  description = "Percorso per l'health check"
+  type        = string
+}
+
+variable "lb_secondary_health_port" {
+  description = "Porta per l'health check"
+  type        = number
+}
+
+variable "lb_secondary_health_interval" {
+  description = "Intervallo tra i check (in sec)"
+  type        = number
+}
+
+variable "lb_secondary_health_timeout" {
+  description = "Timeout del check (in sec)"
+  type        = number
+}
+
+variable "lb_secondary_health_healthy_threshold" {
+  description = "Check OK richiesti per host sano"
+  type        = number
+}
+
+variable "lb_secondary_health_unhealthy_threshold" {
+  description = "Check falliti per host non sano"
+  type        = number
+}
+
+# Forwarding Rule
+variable "lb_secondary_forwarding_port_range" {
+  description = "Range di porte forwarding"
+  type        = string
+}
+
+variable "lb_secondary_forwarding_ip_protocol" {
+  description = "Protocollo IP (TCP/UDP)"
+  type        = string
+}
+
+
+## Route 53 - Failover
+variable "route53_zone_id" {
+  description = "ID della Hosted Zone Route 53"
+  type        = string
+}
+
+variable "route53_record_name" {
+  description = "Nome del record DNS gestito (es. app.miosito.com)"
+  type        = string
+}
+
+# PRIMARY (AWS)
+variable "route53_primary_fqdn" {
+  description = "FQDN del servizio primario per l'health check"
+  type        = string
+}
+
+variable "route53_primary_elb_zone_id" {
+  description = "Hosted zone ID del Load Balancer AWS"
+  type        = string
+}
+
+# Health check config
+variable "route53_health_check_path" {
+  description = "Percorso da interrogare per l'health check"
+  type        = string
+}
+
+variable "route53_health_check_type" {
+  description = "Tipo di check (es. HTTP, HTTPS)"
+  type        = string
+}
+
+variable "route53_health_check_interval" {
+  description = "Intervallo dei check (secondi)"
+  type        = number
+}
+
+variable "route53_health_check_failure_threshold" {
+  description = "Numero di fallimenti prima di considerare down"
+  type        = number
+}
+
+variable "route53_evaluate_target_health" {
+  description = "Valuta lo stato di salute del target ELB"
+  type        = bool
+}
+
+variable "route53_secondary_ttl" {
+  description = "TTL del record secondario"
+  type        = number
+}
