@@ -23,11 +23,6 @@ variable "allowed_office_ip" {
   type        = string
 }
 
-variable "db_identifier" {
-  description = "Identificatore univoco per l'istanza RDS"
-  type        = string
-}
-
 variable "db_engine" {
   description = "Motore del database (es. mysql)"
   type        = string
@@ -46,6 +41,13 @@ variable "db_storage_gb" {
 variable "db_name" {
   description = "Nome del database"
   type        = string
+  default     = "primary"
+}
+
+variable "db_identifier" {
+  description = "Identificatore univoco per l'istanza RDS"
+  type        = string
+  default     = "primary-db"
 }
 
 variable "db_username" {

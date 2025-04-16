@@ -1,6 +1,7 @@
 variable "name" {
   description = "Prefisso per le risorse di rete"
   type        = string
+  default     = "secondary"
 }
 
 variable "subnet_cidr" {
@@ -23,4 +24,22 @@ variable "firewall_rules" {
     source_ranges = list(string)
     target_tags   = list(string)
   }))
+  default = [
+    {
+      name          = "http"
+      protocol      = "tcp"
+      ports         = ["80"]
+      direction     = "INGRESS"
+      source_ranges = ["0.0.0.0/0"]
+      target_tags   = ["secondary"]
+    },
+    {
+      name          = "ssh"
+      protocol      = "tcp"
+      ports         = ["22"]
+      direction     = "INGRESS"
+      source_ranges = ["203.0.113.10/32"]
+      target_tags   = ["secondary"]
+    }
+  ]
 }

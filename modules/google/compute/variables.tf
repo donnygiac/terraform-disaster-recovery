@@ -1,6 +1,7 @@
 variable "name" {
   description = "Prefisso per il nome dell'istanza"
   type        = string
+  default     = "secondary"
 }
 
 variable "machine_type" {
@@ -36,10 +37,14 @@ variable "subnetwork" {
 variable "tags" {
   description = "Lista di tag per le istanze (per firewall)"
   type        = list(string)
+  default     = ["secondary"]
 }
 
 variable "labels" {
   description = "Etichette da applicare alla VM"
   type        = map(string)
-  default     = {}
+  default     = {
+    environment = "dr"
+    team        = "infra"
+  }
 }

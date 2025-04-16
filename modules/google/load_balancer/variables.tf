@@ -1,6 +1,7 @@
 variable "name" {
   description = "Nome base per tutte le risorse del LB"
   type        = string
+  default     = "secondary-lb"
 }
 
 variable "instance_group_self_link" {
@@ -8,7 +9,6 @@ variable "instance_group_self_link" {
   type        = string
 }
 
-# Backend Service
 variable "backend_protocol" {
   description = "Protocollo per il backend service"
   type        = string
@@ -64,7 +64,6 @@ variable "health_check_unhealthy_threshold" {
   type        = number
 }
 
-# Forwarding rule
 variable "forwarding_port_range" {
   description = "Range di porte (es. 80)"
   type        = string

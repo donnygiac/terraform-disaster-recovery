@@ -1,6 +1,7 @@
 variable "name" {
   description = "Nome del database (istanza)"
   type        = string
+  default     = "secondary-db"
 }
 
 variable "region" {
@@ -41,6 +42,7 @@ variable "backup_enabled" {
 variable "allowed_office_ip" {
   description = "IP CIDR dell'ufficio per accesso al DB"
   type        = string
+  default     = "203.0.113.10/32"
 }
 
 variable "db_name" {
@@ -62,4 +64,5 @@ variable "db_password" {
 variable "authorized_network_name" {
   description = "Nome della rete autorizzata per connettersi al DB"
   type        = string
+  default     = "ufficio"
 }

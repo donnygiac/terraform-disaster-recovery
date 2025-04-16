@@ -1,6 +1,7 @@
 variable "name" {
   description = "Nome del Load Balancer"
   type        = string
+  default     = "primary-alb"
 }
 
 variable "vpc_id" {
@@ -36,26 +37,31 @@ variable "load_balancer_type" {
 variable "target_group_name" {
   description = "Nome del Target Group"
   type        = string
+  default     = "primary-tg"
 }
 
 variable "target_group_port" {
   description = "Porta target (es. 80 per HTTP)"
   type        = number
+  default     = 80
 }
 
 variable "target_group_protocol" {
   description = "Protocollo per il Target Group (es. HTTP)"
   type        = string
+  default     = "HTTP"
 }
 
 variable "listener_port" {
   description = "Porta del listener"
   type        = number
+  default     = 80
 }
 
 variable "listener_protocol" {
   description = "Protocollo del listener"
   type        = string
+  default     = "HTTP"
 }
 
 variable "health_check_path" {
