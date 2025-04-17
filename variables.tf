@@ -1,5 +1,5 @@
 # providers.tf - AWS 
-variable "primary_region" {
+variable "aws_region" {
   description = "Regione AWS per l'ambiente primario"
   type        = string
 }
@@ -77,12 +77,12 @@ variable "database_primary_identifier" {
   type        = string
 }
 
-variable "database_primary_engine" {
+variable "database_primary_version" {
   description = "Motore del database (es. mysql)"
   type        = string
 }
 
-variable "database_primary_instance_class" {
+variable "database_primary_tier" {
   description = "Tipo di istanza RDS (es. db.t3.micro)"
   type        = string
 }
@@ -285,7 +285,7 @@ variable "database_secondary_availability_type" {
   type        = string
 }
 
-variable "database_secondary_disk_size" {
+variable "database_secondary_storage" {
   description = "Storage DB in GB"
   type        = number
 }

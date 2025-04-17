@@ -14,7 +14,7 @@ terraform {
 
 # Provider AWS primario
 provider "aws" {
-  region = var.primary_region
+  region = var.aws_region
   alias  = "primary"
 }
 

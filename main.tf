@@ -28,8 +28,8 @@ module "database_primary" {
   app_sg_id         = module.compute_primary.app_sg_id
   allowed_office_ip = var.office_static_ip
   db_identifier     = var.database_primary_identifier
-  db_engine         = var.database_primary_engine
-  db_instance_class = var.database_primary_instance_class
+  db_engine         = var.database_primary_version
+  db_instance_class = var.database_primary_tier
   db_storage_gb     = var.database_primary_storage
   db_name           = var.database_primary_db_name
   db_username       = var.database_primary_username
@@ -90,7 +90,7 @@ module "database_secondary" {
   database_version        = var.database_secondary_version
   tier                    = var.database_secondary_tier
   availability_type       = var.database_secondary_availability_type
-  disk_size_gb            = var.database_secondary_disk_size
+  disk_size_gb            = var.database_secondary_storage
   disk_type               = var.database_secondary_disk_type
   backup_enabled          = var.database_secondary_backup
   allowed_office_ip       = var.office_static_ip
@@ -101,46 +101,37 @@ module "database_secondary" {
 }
 
 module "load_balancer_secondary" {
-  source                   = "./modules/google/load_balancer"
-  name                     = var.lb_secondary_name
-  instance_group_self_link = var.lb_secondary_instance_group_self_link
-
-  backend_protocol    = var.lb_secondary_backend_protocol
-  backend_port_name   = var.lb_secondary_backend_port_name
-  backend_timeout_sec = var.lb_secondary_backend_timeout_sec
-  enable_cdn          = var.lb_secondary_enable_cdn
-
+  source                           = "./modules/google/load_balancer"
+  name                             = var.lb_secondary_name
+  instance_group_self_link         = var.lb_secondary_instance_group_self_link
+  backend_protocol                 = var.lb_secondary_backend_protocol
+  backend_port_name                = var.lb_secondary_backend_port_name
+  backend_timeout_sec              = var.lb_secondary_backend_timeout_sec
+  enable_cdn                       = var.lb_secondary_enable_cdn
   health_check_path                = var.lb_secondary_health_path
   health_check_port                = var.lb_secondary_health_port
   health_check_interval            = var.lb_secondary_health_interval
   health_check_timeout             = var.lb_secondary_health_timeout
   health_check_healthy_threshold   = var.lb_secondary_health_healthy_threshold
   health_check_unhealthy_threshold = var.lb_secondary_health_unhealthy_threshold
-
-  forwarding_port_range  = var.lb_secondary_forwarding_port_range
-  forwarding_ip_protocol = var.lb_secondary_forwarding_ip_protocol
+  forwarding_port_range            = var.lb_secondary_forwarding_port_range
+  forwarding_ip_protocol           = var.lb_secondary_forwarding_ip_protocol
 }
 
 
 # Route 53 Failover DNS Records
 module "route53_failover" {
-  source = "./modules/route53_failover"
-
-  zone_id     = var.route53_zone_id
-  record_name = var.route53_record_name
-
-  primary_fqdn        = var.route53_primary_fqdn
-  primary_elb_dns     = module.load_balancer_primary.forwarding_dns
-  primary_elb_zone_id = var.route53_primary_elb_zone_id
-
-  secondary_ip = module.compute_secondary.instance_ips[0]
-
-
+  source                         = "./modules/route53_failover"
+  zone_id                        = var.route53_zone_id
+  record_name                    = var.route53_record_name
+  primary_fqdn                   = var.route53_primary_fqdn
+  primary_elb_dns                = module.load_balancer_primary.forwarding_dns
+  primary_elb_zone_id            = module.load_balancer_primary.forwarding_zone_id
+  secondary_ip                   = module.compute_secondary.instance_ips[0]
   health_check_path              = var.route53_health_check_path
   health_check_type              = var.route53_health_check_type
   health_check_interval          = var.route53_health_check_interval
   health_check_failure_threshold = var.route53_health_check_failure_threshold
-
-  evaluate_target_health = var.route53_evaluate_target_health
-  secondary_ttl          = var.route53_secondary_ttl
+  evaluate_target_health         = var.route53_evaluate_target_health
+  secondary_ttl                  = var.route53_secondary_ttl
 }
