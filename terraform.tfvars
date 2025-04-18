@@ -15,6 +15,7 @@ subnet_count_primary = 2
 subnet_bits_primary = 8
 ## modules/google/networking - Google Cloud
 subnet_cidr_secondary = "10.1.0.0/16"
+networking_secondary_name = "secondary-vpc"
 
 # COMPUTE SETTINGS
 ## modules/aws/compute - AWS
@@ -29,6 +30,8 @@ compute_secondary_image          = "projects/debian-cloud/global/images/family/d
 
 # DATABASE SETTINGS
 ## modules/aws/database - AWS
+database_primary_name = "primary-db-name"
+database_primary_identifier = "primary-db-identifier"
 database_primary_version  = "mysql"
 database_primary_tier     = "db.t3.medium"
 database_primary_storage  = 20

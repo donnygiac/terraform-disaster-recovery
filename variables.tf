@@ -190,18 +190,6 @@ variable "google_zone" {
 }
 
 # modules/google/networking - GOOGLE
-variable "networking_secondary_firewall_rules" {
-  description = "Regole firewall per la rete GCP secondaria"
-  type        = list(object({
-    name          = string
-    protocol      = string
-    ports         = list(string)
-    direction     = string
-    source_ranges = list(string)
-    target_tags   = list(string)
-  }))
-}
-
 variable "networking_secondary_name" {
   description = "Prefisso per le risorse di rete GCP"
   type        = string

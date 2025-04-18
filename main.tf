@@ -20,18 +20,18 @@ module "compute_primary" {
 
 module "database_primary" {
   source            = "./modules/aws/database"
-  name              = var.database_primary_name
+  name              = var.database_primary_name //ok //Prefisso generico usato per nominare risorse Terraform
   vpc_id            = module.networking_primary.vpc_id
   subnet_ids        = module.networking_primary.public_subnets
   app_sg_id         = module.compute_primary.app_sg_id
-  allowed_office_ip = var.office_static_ip
-  db_identifier     = var.database_primary_identifier
-  db_engine         = var.database_primary_version
-  db_instance_class = var.database_primary_tier
-  db_storage_gb     = var.database_primary_storage
-  db_name           = var.database_primary_db_name
-  db_username       = var.database_primary_username
-  db_password       = var.database_primary_password
+  allowed_office_ip = var.office_static_ip //ok
+  db_identifier     = var.database_primary_identifier //ok
+  db_engine         = var.database_primary_version //ok
+  db_instance_class = var.database_primary_tier //ok
+  db_storage_gb     = var.database_primary_storage //ok
+  db_name           = var.database_primary_db_name //ok // Nome reale del database 
+  db_username       = var.database_primary_username //ok
+  db_password       = var.database_primary_password //ok
 }
 
 module "load_balancer_primary" {
@@ -62,10 +62,9 @@ module "load_balancer_primary" {
 
 module "networking_secondary" {
   source         = "./modules/google/networking"
-  name           = var.networking_secondary_name
-  subnet_cidr    = var.subnet_cidr_secondary
-  region         = var.google_region
-  firewall_rules = var.networking_secondary_firewall_rules
+  name           = var.networking_secondary_name //ok
+  subnet_cidr    = var.subnet_cidr_secondary //ok
+  region         = var.google_region//ok
 }
 
 module "compute_secondary" {
