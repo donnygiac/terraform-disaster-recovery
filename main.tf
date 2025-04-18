@@ -76,7 +76,6 @@ module "compute_secondary" {
   image          = var.compute_secondary_image //ok
   network        = module.networking_secondary.network_name
   subnetwork     = module.networking_secondary.subnetwork_name
-  labels         = var.compute_secondary_labels
 }
 
 module "database_secondary" {
