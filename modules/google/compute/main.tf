@@ -19,6 +19,6 @@ resource "google_compute_instance" "app" {
     }
   }
 
-  tags   = var.tags
+  tags = ["${var.name}-app-${count.index + 1}"]
   labels = var.labels
 }

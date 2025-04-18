@@ -24,6 +24,7 @@ compute_primary_instance_count = 1
 compute_primary_ami            = "ami-09454961f90c7c88c"
 compute_primary_instance_type  = "t3.medium"
 ## modules/google/compute - Google Cloud
+compute_secondary_name            = "secondary-vm-name"
 compute_secondary_instance_count = 1
 compute_secondary_machine_type   = "e2-standard-2"
 compute_secondary_image          = "projects/debian-cloud/global/images/family/debian-12"

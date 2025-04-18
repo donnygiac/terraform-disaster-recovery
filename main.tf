@@ -69,14 +69,13 @@ module "networking_secondary" {
 
 module "compute_secondary" {
   source         = "./modules/google/compute"
-  name           = var.compute_secondary_name
-  instance_count = var.compute_secondary_instance_count
-  machine_type   = var.compute_secondary_machine_type
-  zone           = var.google_zone
-  image          = var.compute_secondary_image
+  name           = var.compute_secondary_name //ok
+  instance_count = var.compute_secondary_instance_count //ok
+  machine_type   = var.compute_secondary_machine_type //ok
+  zone           = var.google_zone //ok
+  image          = var.compute_secondary_image //ok
   network        = module.networking_secondary.network_name
   subnetwork     = module.networking_secondary.subnetwork_name
-  tags           = var.compute_secondary_tags
   labels         = var.compute_secondary_labels
 }
 

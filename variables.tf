@@ -221,11 +221,6 @@ variable "compute_secondary_image" {
   type        = string
 }
 
-variable "compute_secondary_tags" {
-  description = "Lista di tag da associare alla VM (es. per firewall)"
-  type        = list(string)
-}
-
 variable "compute_secondary_labels" {
   description = "Etichette chiave-valore da associare alla VM"
   type        = map(string)
