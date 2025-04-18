@@ -10,11 +10,15 @@ google_zone    = "europe-west1-b"
 # NETWORKING SETTINGS
 ## modules/aws/networking - AWS
 vpc_cidr_primary = "10.0.0.0/16"
+networking_primary_name = "primary-vpc"
+subnet_count_primary = 2
+subnet_bits_primary = 8
 ## modules/google/networking - Google Cloud
 subnet_cidr_secondary = "10.1.0.0/16"
 
 # COMPUTE SETTINGS
 ## modules/aws/compute - AWS
+compute_primary_name            = "primary-vm-name"
 compute_primary_instance_count = 1
 compute_primary_ami            = "ami-09454961f90c7c88c"
 compute_primary_instance_type  = "t3.medium"

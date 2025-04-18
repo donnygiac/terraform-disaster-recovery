@@ -26,7 +26,6 @@ variable "instance_count" {
 variable "name" {
   description = "Prefisso per il nome delle risorse compute"
   type        = string
-  default     = "primary"
 }
 
 variable "ingress_rules" {

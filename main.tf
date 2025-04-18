@@ -2,22 +2,20 @@
 
 module "networking_primary" {
   source       = "./modules/aws/networking"
-  vpc_cidr     = var.vpc_cidr_primary
-  name         = var.networking_primary_name
-  subnet_count = var.subnet_count_primary
-  subnet_bits  = var.subnet_bits_primary
+  vpc_cidr     = var.vpc_cidr_primary //ok
+  name         = var.networking_primary_name //ok
+  subnet_count = var.subnet_count_primary //ok
+  subnet_bits  = var.subnet_bits_primary //ok
 }
 
 module "compute_primary" {
   source         = "./modules/aws/compute"
   vpc_id         = module.networking_primary.vpc_id
   subnet_ids     = module.networking_primary.public_subnets
-  app_ami        = var.compute_primary_ami
-  instance_type  = var.compute_primary_instance_type
-  instance_count = var.compute_primary_instance_count
-  name           = var.compute_primary_name
-  ingress_rules  = var.compute_primary_ingress_rules
-  egress_rules   = var.compute_primary_egress_rules
+  app_ami        = var.compute_primary_ami //ok
+  instance_type  = var.compute_primary_instance_type //ok
+  instance_count = var.compute_primary_instance_count //ok
+  name           = var.compute_primary_name //ok
 }
 
 module "database_primary" {

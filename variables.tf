@@ -46,26 +46,6 @@ variable "compute_primary_name" {
   type        = string
 }
 
-variable "compute_primary_ingress_rules" {
-  description = "Ingress rules per EC2"
-  type        = list(object({
-    from_port   = number
-    to_port     = number
-    protocol    = string
-    cidr_blocks = list(string)
-  }))
-}
-
-variable "compute_primary_egress_rules" {
-  description = "Egress rules per EC2"
-  type        = list(object({
-    from_port   = number
-    to_port     = number
-    protocol    = string
-    cidr_blocks = list(string)
-  }))
-}
-
 # modules/database - AWS
 variable "database_primary_name" {
   description = "Prefisso per il nome delle risorse database"

@@ -146,7 +146,7 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
         </li>
         <li>
           <span class="label">Time generated:</span>
-          <span class="value">2025-04-17 17:22:13 CEST</span>
+          <span class="value">2025-04-17 19:54:12 CEST</span>
         </li>
       </ul>
     </div>
@@ -207,11 +207,11 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
     <td class="name">
       
       <span class="arrow">&#8627;</span>
-      SQL instance (db-f1-micro, zonal)
+      vCPUs (2, zonal)
     </td>
     
       
-        <td class="monthly-quantity">730</td>
+        <td class="monthly-quantity">1,460</td>
       
       
         <td class="unit">hours</td>
@@ -219,7 +219,30 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
       
       
       
-        <td class="monthly-cost">$7.67</td>
+        <td class="monthly-cost">$60.30</td>
+      
+    
+  </tr>
+
+  
+    
+  <tr class="cost-component">
+    <td class="name">
+      
+      <span class="arrow">&#8627;</span>
+      Memory (4 GB, zonal)
+    </td>
+    
+      
+        <td class="monthly-quantity">4</td>
+      
+      
+        <td class="unit">GB</td>
+      
+      
+      
+      
+        <td class="monthly-cost">$20.44</td>
       
     
   </tr>
@@ -234,7 +257,7 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
     </td>
     
       
-        <td class="monthly-quantity">10</td>
+        <td class="monthly-quantity">20</td>
       
       
         <td class="unit">GB</td>
@@ -242,7 +265,7 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
       
       
       
-        <td class="monthly-cost">$1.70</td>
+        <td class="monthly-cost">$3.40</td>
       
     
   </tr>
@@ -284,6 +307,306 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
   </tr>
 
   
+  
+
+      
+        
+  
+  <tr class="resource top-level">
+    <td class="name">
+      
+      
+      module.compute_secondary.google_compute_instance.app[0]
+    </td>
+    
+  
+    <td class="monthly-quantity"></td>
+  
+  
+    <td class="unit"></td>
+  
+  
+  
+  
+    <td class="monthly-cost"></td>
+  
+
+  </tr>
+  
+  
+  
+    
+  <tr class="cost-component">
+    <td class="name">
+      
+      <span class="arrow">&#8627;</span>
+      Instance usage (Linux/UNIX, on-demand, e2-standard-2)
+    </td>
+    
+      
+        <td class="monthly-quantity">730</td>
+      
+      
+        <td class="unit">hours</td>
+      
+      
+      
+      
+        <td class="monthly-cost">$53.81</td>
+      
+    
+  </tr>
+
+  
+    
+  <tr class="cost-component">
+    <td class="name">
+      
+      <span class="arrow">&#8627;</span>
+      Standard provisioned storage (pd-standard)
+    </td>
+    
+      
+        <td class="monthly-quantity">10</td>
+      
+      
+        <td class="unit">GB</td>
+      
+      
+      
+      
+        <td class="monthly-cost">$0.40</td>
+      
+    
+  </tr>
+
+  
+  
+
+      
+        
+  
+  <tr class="resource top-level">
+    <td class="name">
+      
+      
+      module.database_primary.aws_db_instance.this
+    </td>
+    
+  
+    <td class="monthly-quantity"></td>
+  
+  
+    <td class="unit"></td>
+  
+  
+  
+  
+    <td class="monthly-cost"></td>
+  
+
+  </tr>
+  
+    <tr class="tags">
+      <td class="name">
+        
+        
+          
+          
+        
+        <span class="label">Tags:</span>
+        <span>Name=name-infracost-mock-44956be29f34-rds</span>
+      </td>
+      
+  
+    <td class="monthly-quantity"></td>
+  
+  
+    <td class="unit"></td>
+  
+  
+  
+  
+    <td class="monthly-cost"></td>
+  
+
+    </tr>
+  
+  
+  
+    
+  <tr class="cost-component">
+    <td class="name">
+      
+      <span class="arrow">&#8627;</span>
+      Database instance (on-demand, Single-AZ, db.t3.medium)
+    </td>
+    
+      
+        <td class="monthly-quantity">730</td>
+      
+      
+        <td class="unit">hours</td>
+      
+      
+      
+      
+        <td class="monthly-cost">$49.64</td>
+      
+    
+  </tr>
+
+  
+    
+  <tr class="cost-component">
+    <td class="name">
+      
+      <span class="arrow">&#8627;</span>
+      Storage (general purpose SSD, gp2)
+    </td>
+    
+      
+        <td class="monthly-quantity">20</td>
+      
+      
+        <td class="unit">GB</td>
+      
+      
+      
+      
+        <td class="monthly-cost">$2.30</td>
+      
+    
+  </tr>
+
+  
+  
+
+      
+        
+  
+  <tr class="resource top-level">
+    <td class="name">
+      
+      
+      module.compute_primary.aws_instance.app[0]
+    </td>
+    
+  
+    <td class="monthly-quantity"></td>
+  
+  
+    <td class="unit"></td>
+  
+  
+  
+  
+    <td class="monthly-cost"></td>
+  
+
+  </tr>
+  
+    <tr class="tags">
+      <td class="name">
+        
+        
+          
+          
+        
+        <span class="label">Tags:</span>
+        <span>Name=name-infracost-mock-44956be29f34-app-1</span>
+      </td>
+      
+  
+    <td class="monthly-quantity"></td>
+  
+  
+    <td class="unit"></td>
+  
+  
+  
+  
+    <td class="monthly-cost"></td>
+  
+
+    </tr>
+  
+  
+  
+    
+  <tr class="cost-component">
+    <td class="name">
+      
+      <span class="arrow">&#8627;</span>
+      Instance usage (Linux/UNIX, on-demand, t3.medium)
+    </td>
+    
+      
+        <td class="monthly-quantity">730</td>
+      
+      
+        <td class="unit">hours</td>
+      
+      
+      
+      
+        <td class="monthly-cost">$30.37</td>
+      
+    
+  </tr>
+
+  
+  
+    
+  
+  <tr class="resource">
+    <td class="name">
+      
+      <span class="arrow">&#8627;</span>
+      root_block_device
+    </td>
+    
+  
+    <td class="monthly-quantity"></td>
+  
+  
+    <td class="unit"></td>
+  
+  
+  
+  
+    <td class="monthly-cost"></td>
+  
+
+  </tr>
+  
+  
+  
+    
+  <tr class="cost-component">
+    <td class="name">
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <span class="arrow">&#8627;</span>
+      Storage (general purpose SSD, gp2)
+    </td>
+    
+      
+        <td class="monthly-quantity">8</td>
+      
+      
+        <td class="unit">GB</td>
+      
+      
+      
+      
+        <td class="monthly-cost">$0.80</td>
+      
+    
+  </tr>
+
+  
+  
+
   
 
       
@@ -385,232 +708,6 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
     <td class="name">
       
       
-      module.database_primary.aws_db_instance.this
-    </td>
-    
-  
-    <td class="monthly-quantity"></td>
-  
-  
-    <td class="unit"></td>
-  
-  
-  
-  
-    <td class="monthly-cost"></td>
-  
-
-  </tr>
-  
-    <tr class="tags">
-      <td class="name">
-        
-        
-          
-          
-        
-        <span class="label">Tags:</span>
-        <span>Name=name-infracost-mock-44956be29f34-rds</span>
-      </td>
-      
-  
-    <td class="monthly-quantity"></td>
-  
-  
-    <td class="unit"></td>
-  
-  
-  
-  
-    <td class="monthly-cost"></td>
-  
-
-    </tr>
-  
-  
-  
-    
-  <tr class="cost-component">
-    <td class="name">
-      
-      <span class="arrow">&#8627;</span>
-      Database instance (on-demand, Single-AZ, db.t3.micro)
-    </td>
-    
-      
-        <td class="monthly-quantity">730</td>
-      
-      
-        <td class="unit">hours</td>
-      
-      
-      
-      
-        <td class="monthly-cost">$12.41</td>
-      
-    
-  </tr>
-
-  
-    
-  <tr class="cost-component">
-    <td class="name">
-      
-      <span class="arrow">&#8627;</span>
-      Storage (general purpose SSD, gp2)
-    </td>
-    
-      
-        <td class="monthly-quantity">20</td>
-      
-      
-        <td class="unit">GB</td>
-      
-      
-      
-      
-        <td class="monthly-cost">$2.30</td>
-      
-    
-  </tr>
-
-  
-  
-
-      
-        
-  
-  <tr class="resource top-level">
-    <td class="name">
-      
-      
-      module.compute_primary.aws_instance.app[0]
-    </td>
-    
-  
-    <td class="monthly-quantity"></td>
-  
-  
-    <td class="unit"></td>
-  
-  
-  
-  
-    <td class="monthly-cost"></td>
-  
-
-  </tr>
-  
-    <tr class="tags">
-      <td class="name">
-        
-        
-          
-          
-        
-        <span class="label">Tags:</span>
-        <span>Name=name-infracost-mock-44956be29f34-app-1</span>
-      </td>
-      
-  
-    <td class="monthly-quantity"></td>
-  
-  
-    <td class="unit"></td>
-  
-  
-  
-  
-    <td class="monthly-cost"></td>
-  
-
-    </tr>
-  
-  
-  
-    
-  <tr class="cost-component">
-    <td class="name">
-      
-      <span class="arrow">&#8627;</span>
-      Instance usage (Linux/UNIX, on-demand, t3.micro)
-    </td>
-    
-      
-        <td class="monthly-quantity">730</td>
-      
-      
-        <td class="unit">hours</td>
-      
-      
-      
-      
-        <td class="monthly-cost">$7.59</td>
-      
-    
-  </tr>
-
-  
-  
-    
-  
-  <tr class="resource">
-    <td class="name">
-      
-      <span class="arrow">&#8627;</span>
-      root_block_device
-    </td>
-    
-  
-    <td class="monthly-quantity"></td>
-  
-  
-    <td class="unit"></td>
-  
-  
-  
-  
-    <td class="monthly-cost"></td>
-  
-
-  </tr>
-  
-  
-  
-    
-  <tr class="cost-component">
-    <td class="name">
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <span class="arrow">&#8627;</span>
-      Storage (general purpose SSD, gp2)
-    </td>
-    
-      
-        <td class="monthly-quantity">8</td>
-      
-      
-        <td class="unit">GB</td>
-      
-      
-      
-      
-        <td class="monthly-cost">$0.80</td>
-      
-    
-  </tr>
-
-  
-  
-
-  
-
-      
-        
-  
-  <tr class="resource top-level">
-    <td class="name">
-      
-      
       module.load_balancer_secondary.google_compute_global_forwarding_rule.this
     </td>
     
@@ -662,80 +759,6 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
     </td>
     
       <td colspan="3" class="usage-cost">Cost depends on usage: $0.008 per GB</td>
-    
-  </tr>
-
-  
-  
-
-      
-        
-  
-  <tr class="resource top-level">
-    <td class="name">
-      
-      
-      module.compute_secondary.google_compute_instance.app[0]
-    </td>
-    
-  
-    <td class="monthly-quantity"></td>
-  
-  
-    <td class="unit"></td>
-  
-  
-  
-  
-    <td class="monthly-cost"></td>
-  
-
-  </tr>
-  
-  
-  
-    
-  <tr class="cost-component">
-    <td class="name">
-      
-      <span class="arrow">&#8627;</span>
-      Instance usage (Linux/UNIX, on-demand, e2-micro)
-    </td>
-    
-      
-        <td class="monthly-quantity">730</td>
-      
-      
-        <td class="unit">hours</td>
-      
-      
-      
-      
-        <td class="monthly-cost">$6.11</td>
-      
-    
-  </tr>
-
-  
-    
-  <tr class="cost-component">
-    <td class="name">
-      
-      <span class="arrow">&#8627;</span>
-      Standard provisioned storage (pd-standard)
-    </td>
-    
-      
-        <td class="monthly-quantity">10</td>
-      
-      
-        <td class="unit">GB</td>
-      
-      
-      
-      
-        <td class="monthly-cost">$0.40</td>
-      
     
   </tr>
 
@@ -984,7 +1007,7 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
       
       <tr class="total">
         <td class="name" colspan="3">Project total</td>
-        <td class="monthly-cost">$70.51</td>
+        <td class="monthly-cost">$252.98</td>
       </tr>
     </tbody>
   </table>
@@ -995,7 +1018,7 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
       <tbody>
         <tr class="total">
           <td class="name" colspan="3">Overall total</td>
-          <td class="monthly-cost">$70.51</td>
+          <td class="monthly-cost">$252.98</td>
         </tr>
       </tbody>
     </table>

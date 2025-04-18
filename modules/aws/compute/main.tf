@@ -1,3 +1,17 @@
+# Istanze EC2
+resource "aws_instance" "app" {
+  count         = var.instance_count
+  ami           = var.app_ami
+  instance_type = var.instance_type
+  subnet_id     = element(var.subnet_ids, count.index)
+  vpc_security_group_ids = [aws_security_group.app_sg.id]
+
+  tags = {
+    Name = "${var.name}-app-${count.index + 1}"
+  }
+}
+
+
 # Security Group per EC2
 resource "aws_security_group" "app_sg" {
   vpc_id = var.vpc_id
@@ -27,15 +41,3 @@ resource "aws_security_group" "app_sg" {
   }
 }
 
-# Istanze EC2
-resource "aws_instance" "app" {
-  count         = var.instance_count
-  ami           = var.app_ami
-  instance_type = var.instance_type
-  subnet_id     = element(var.subnet_ids, count.index)
-  vpc_security_group_ids = [aws_security_group.app_sg.id]
-
-  tags = {
-    Name = "${var.name}-app-${count.index + 1}"
-  }
-}
