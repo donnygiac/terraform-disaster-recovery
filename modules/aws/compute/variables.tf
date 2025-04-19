@@ -18,10 +18,16 @@ variable "instance_type" {
   type        = string
 }
 
-variable "instance_count" {
-  description = "Numero di istanze EC2 da creare"
+variable "volume_size" {
+  description = "Dimensione in GB del volume root"
   type        = number
 }
+
+variable "volume_type" {
+  description = "Tipo di volume root (es. gp2, gp3)"
+  type        = string
+}
+
 
 variable "name" {
   description = "Prefisso per il nome delle risorse compute"
@@ -36,20 +42,6 @@ variable "ingress_rules" {
     protocol    = string
     cidr_blocks = list(string)
   }))
-  default = [
-    {
-      from_port   = 80
-      to_port     = 80
-      protocol    = "tcp"
-      cidr_blocks = ["0.0.0.0/0"]
-    },
-    {
-      from_port   = 22
-      to_port     = 22
-      protocol    = "tcp"
-      cidr_blocks = ["203.0.113.10/32"]
-    }
-  ]
 }
 
 variable "egress_rules" {
@@ -60,12 +52,4 @@ variable "egress_rules" {
     protocol    = string
     cidr_blocks = list(string)
   }))
-  default = [
-    {
-      from_port   = 0
-      to_port     = 0
-      protocol    = "-1"
-      cidr_blocks = ["0.0.0.0/0"]
-    }
-  ]
 }

@@ -15,16 +15,6 @@ variable "networking_primary_name" {
   type        = string
 }
 
-variable "subnet_count_primary" {
-  description = "Numero di subnet pubbliche da creare"
-  type        = number
-}
-
-variable "subnet_bits_primary" {
-  description = "Numero di bit da usare per derivare il CIDR delle subnet dalla VPC"
-  type        = number
-}
-
 # modules/compute - AWS
 variable "compute_primary_ami" {
   description = "AMI da usare per le istanze EC2 primarie"
@@ -36,9 +26,34 @@ variable "compute_primary_instance_type" {
   type        = string
 }
 
-variable "compute_primary_instance_count" {
-  description = "Numero di istanze EC2 da creare"
+variable "compute_primary_volume_size" {
+  description = "Dimensione del volume root in GB"
   type        = number
+}
+
+variable "compute_primary_volume_type" {
+  description = "Tipo di volume root (es. gp2, gp3)"
+  type        = string
+}
+
+variable "compute_primary_ingress_rules" {
+  description = "Regole di ingresso per il security group"
+  type = list(object({
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = list(string)
+  }))
+}
+
+variable "compute_primary_egress_rules" {
+  description = "Regole di uscita per il security group"
+  type = list(object({
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = list(string)
+  }))
 }
 
 variable "compute_primary_name" {
@@ -200,15 +215,23 @@ variable "subnet_cidr_secondary" {
   type        = string
 }
 
+variable "networking_secondary_firewall_rules" {
+  description = "Regole firewall per la rete GCP secondaria"
+  type = list(object({
+    name          = string
+    protocol      = string
+    ports         = list(string)
+    direction     = string
+    source_ranges = list(string)
+    target_tags   = list(string)
+  }))
+}
+
+
 # modules/google/compute - GOOGLE
 variable "compute_secondary_name" {
   description = "Prefisso per il nome delle istanze GCP"
   type        = string
-}
-
-variable "compute_secondary_instance_count" {
-  description = "Numero di istanze GCP da creare"
-  type        = number
 }
 
 variable "compute_secondary_machine_type" {
@@ -225,6 +248,16 @@ variable "compute_secondary_labels" {
   description = "Etichette chiave-valore da associare alla VM"
   type        = map(string)
   default     = {}
+}
+
+variable "compute_secondary_disk_size" {
+  description = "Dimensione del disco boot in GB"
+  type        = number
+}
+
+variable "compute_secondary_disk_type" {
+  description = "Tipo di disco (es. pd-balanced, pd-ssd, pd-standard)"
+  type        = string
 }
 
 # modules/google/database

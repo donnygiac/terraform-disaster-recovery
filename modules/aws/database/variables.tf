@@ -18,11 +18,6 @@ variable "app_sg_id" {
   type        = string
 }
 
-variable "allowed_office_ip" {
-  description = "IP pubblico dell'ufficio per accesso diretto (formato CIDR /32)"
-  type        = string
-}
-
 variable "db_engine" {
   description = "Motore del database (es. mysql)"
   type        = string

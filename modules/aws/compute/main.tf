@@ -1,16 +1,20 @@
 # Istanze EC2
 resource "aws_instance" "app" {
-  count         = var.instance_count
   ami           = var.app_ami
   instance_type = var.instance_type
-  subnet_id     = element(var.subnet_ids, count.index)
+  subnet_id     = var.subnet_ids[0]
   vpc_security_group_ids = [aws_security_group.app_sg.id]
 
+  root_block_device {
+    volume_size = var.volume_size
+    volume_type = var.volume_type
+    delete_on_termination = true
+  }
+
   tags = {
-    Name = "${var.name}-app-${count.index + 1}"
+    Name = "${var.name}-app"
   }
 }
-
 
 # Security Group per EC2
 resource "aws_security_group" "app_sg" {

@@ -1,6 +1,3 @@
-# Recupera le zone di disponibilità disponibili
-data "aws_availability_zones" "available" {}
-
 # VPC
 resource "aws_vpc" "this" {
   cidr_block           = var.vpc_cidr
@@ -12,16 +9,15 @@ resource "aws_vpc" "this" {
   }
 }
 
-# Creazione delle Subnet pubbliche
+# Subnet pubblica (singola)
 resource "aws_subnet" "public" {
-  count                   = var.subnet_count
   vpc_id                  = aws_vpc.this.id
-  cidr_block              = cidrsubnet(var.vpc_cidr, var.subnet_bits, count.index)
-  availability_zone       = element(data.aws_availability_zones.available.names, count.index)
+  cidr_block              = var.vpc_cidr
+  availability_zone       = data.aws_availability_zones.available.names[0]
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "${var.name}-public-subnet-${count.index + 1}"
+    Name = "${var.name}-public-subnet"
   }
 }
 
@@ -50,9 +46,11 @@ resource "aws_route" "internet_access" {
   gateway_id             = aws_internet_gateway.this.id
 }
 
-# Associazione della Route Table a ciascuna Subnet pubblica
+# Associazione della Route Table alla Subnet
 resource "aws_route_table_association" "public" {
-  count          = var.subnet_count
-  subnet_id      = aws_subnet.public[count.index].id
+  subnet_id      = aws_subnet.public.id
   route_table_id = aws_route_table.public.id
 }
+
+# Availability Zones (necessaria per prendere almeno una zona valida)
+data "aws_availability_zones" "available" {}

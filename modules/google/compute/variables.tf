@@ -18,10 +18,18 @@ variable "image" {
   type        = string
 }
 
-variable "instance_count" {
-  description = "Numero di istanze da creare"
+variable "disk_size" {
+  description = "Dimensione del disco boot (GB)"
   type        = number
+  default     = 20
 }
+
+variable "disk_type" {
+  description = "Tipo di disco (es. pd-balanced, pd-ssd, pd-standard)"
+  type        = string
+  default     = "pd-balanced"
+}
+
 
 variable "network" {
   description = "Nome della rete VPC GCP"

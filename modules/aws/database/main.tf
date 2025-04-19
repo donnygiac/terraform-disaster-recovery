@@ -22,15 +22,6 @@ resource "aws_security_group" "rds_sg" {
     description     = "Accesso dalle istanze EC2"
   }
 
-  # Accesso da IP ufficio
-  ingress {
-    from_port   = 3306
-    to_port     = 3306
-    protocol    = "tcp"
-    cidr_blocks = [var.allowed_office_ip]
-    description = "Accesso dall'ufficio"
-  }
-
   egress {
     from_port   = 0
     to_port     = 0

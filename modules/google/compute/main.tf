@@ -1,12 +1,13 @@
 resource "google_compute_instance" "app" {
-  count        = var.instance_count
-  name         = "${var.name}-vm-${count.index + 1}"
+  name         = "${var.name}-vm"
   machine_type = var.machine_type
   zone         = var.zone
 
   boot_disk {
     initialize_params {
       image = var.image
+      size  = var.disk_size
+      type  = var.disk_type
     }
   }
 
@@ -19,6 +20,6 @@ resource "google_compute_instance" "app" {
     }
   }
 
-  tags = ["${var.name}-app-${count.index + 1}"]
+  tags   = ["${var.name}-app"]
   labels = var.labels
 }
