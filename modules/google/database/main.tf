@@ -12,12 +12,14 @@ resource "google_sql_database_instance" "this" {
 
     backup_configuration {
       enabled = var.backup_enabled
+      start_time = var.db_backup_window
+      location  = var.region
     }
 
     ip_configuration {
       ipv4_enabled = true
       dynamic "authorized_networks" {
-        for_each = [var.allowed_office_ip]
+        for_each = [var.custom_static_ip]
         content {
           name = var.authorized_network_name
           value = authorized_networks.value

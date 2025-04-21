@@ -1,3 +1,9 @@
+# Genreric variables for AWS and GCP
+variable "database_custom_static_ip" {
+  description = "IP pubblico (CIDR /32) dell'ufficio per accesso DB"
+  type        = string
+}
+
 # providers.tf - AWS 
 variable "aws_region" {
   description = "Regione AWS per l'ambiente primario"
@@ -103,15 +109,20 @@ variable "database_primary_password" {
   sensitive   = true
 }
 
-variable "office_static_ip" {
-  description = "IP pubblico (CIDR /32) dell'ufficio per accesso DB"
+variable "database_primary_backup_retention" {
+  description = "Numero di giorni di retention dei backup (0 per disattivare)"
+  type        = number
+}
+
+variable "database_primary_backup_window" {
+  description = "Finestra oraria per i backup (formato hh:mm-hh:mm)"
   type        = string
 }
 
 
 # modules/load_balancer - AWS
-variable "lb_primary_name" {
-  description = "Nome del Load Balancer primario"
+variable "lb_primary_type" {
+  description = "Tipo di LB: application o network"
   type        = string
 }
 
@@ -120,75 +131,16 @@ variable "lb_primary_internal" {
   type        = bool
 }
 
-variable "lb_primary_type" {
-  description = "Tipo di LB: application o network"
+variable "lb_primary_certificate_arn" {
+  description = "ARN del certificato SSL per HTTPS"
   type        = string
-}
-
-variable "lb_primary_tg_name" {
-  description = "Nome del Target Group"
-  type        = string
-}
-
-variable "lb_primary_tg_port" {
-  description = "Porta del Target Group"
-  type        = number
-}
-
-variable "lb_primary_tg_protocol" {
-  description = "Protocollo Target Group (es. HTTP)"
-  type        = string
-}
-
-variable "lb_primary_listener_port" {
-  description = "Porta di ascolto del listener"
-  type        = number
-}
-
-variable "lb_primary_listener_protocol" {
-  description = "Protocollo del listener"
-  type        = string
-}
-
-variable "lb_primary_health_path" {
-  description = "Path per l'health check"
-  type        = string
-}
-
-variable "lb_primary_health_protocol" {
-  description = "Protocollo dell'health check"
-  type        = string
-}
-
-variable "lb_primary_health_matcher" {
-  description = "Codice HTTP di risposta atteso"
-  type        = string
-}
-
-variable "lb_primary_health_interval" {
-  description = "Intervallo in secondi tra i check"
-  type        = number
-}
-
-variable "lb_primary_health_timeout" {
-  description = "Timeout in secondi per ogni check"
-  type        = number
-}
-
-variable "lb_primary_health_healthy_threshold" {
-  description = "Quanti check OK per considerare l’host sano"
-  type        = number
-}
-
-variable "lb_primary_health_unhealthy_threshold" {
-  description = "Quanti check falliti per considerare l’host non sano"
-  type        = number
 }
 
 variable "lb_primary_tags" {
   description = "Tag da assegnare al Load Balancer"
   type        = map(string)
 }
+
 
 # providers.tf - GOOGLE
 variable "google_project" {
@@ -311,11 +263,12 @@ variable "database_secondary_password" {
   type        = string
   sensitive   = true
 }
-
-variable "authorized_network_name" {
-  description = "Nome della rete autorizzata per connettersi al DB (GCP)"
+variable "database_secondary_backup_window" {
+  description = "Finestra oraria per i backup (formato hh:mm-hh:mm)"
   type        = string
 }
+
+
 
 # modules/google/load_balancer - GOOGLE
 variable "lb_secondary_name" {
@@ -341,17 +294,6 @@ variable "lb_secondary_backend_port_name" {
 variable "lb_secondary_backend_timeout_sec" {
   description = "Timeout del backend in secondi"
   type        = number
-}
-
-variable "lb_secondary_enable_cdn" {
-  description = "Abilitare CDN per GCP Load Balancer"
-  type        = bool
-}
-
-# Health Check
-variable "lb_secondary_health_path" {
-  description = "Percorso per l'health check"
-  type        = string
 }
 
 variable "lb_secondary_health_port" {

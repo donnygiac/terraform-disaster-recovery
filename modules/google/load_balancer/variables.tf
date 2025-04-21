@@ -1,7 +1,7 @@
 variable "name" {
-  description = "Nome base per tutte le risorse del LB"
+  description = "Nome del Load Balancer"
   type        = string
-  default     = "secondary-lb"
+  default     = "secondary-lb" # ok default
 }
 
 variable "instance_group_self_link" {
@@ -30,13 +30,14 @@ variable "backend_timeout_sec" {
 variable "enable_cdn" {
   description = "Abilitare Google Cloud CDN"
   type        = bool
-  default     = false
+  default     = false # ok default
 }
 
 # Health check
 variable "health_check_path" {
   description = "Percorso dell'health check"
   type        = string
+  default     = "/" # ok default
 }
 
 variable "health_check_port" {

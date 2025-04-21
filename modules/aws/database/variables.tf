@@ -18,6 +18,11 @@ variable "app_sg_id" {
   type        = string
 }
 
+variable "custom_static_ip" {
+  description = "IP pubblico dell'ufficio per accesso diretto al DB (formato CIDR /32)"
+  type        = string
+}
+
 variable "db_engine" {
   description = "Motore del database (es. mysql)"
   type        = string
@@ -50,5 +55,15 @@ variable "db_username" {
 
 variable "db_password" {
   description = "Password del database"
+  type        = string
+}
+
+variable "db_backup_retention" {
+  description = "Numero di giorni di retention dei backup (0 per disattivare)"
+  type        = number
+}
+
+variable "db_backup_window" {
+  description = "Finestra oraria per i backup (formato hh:mm-hh:mm)"
   type        = string
 }

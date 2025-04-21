@@ -99,3 +99,10 @@ infracost breakdown --config-file infracost.yml --format json --out-file infraco
 - `variables.tf` → variabili condivise
 - `infracost.yml` → configurazione dei moduli da analizzare con Infracost
 - `outputs.tf` → mostra i riferimenti utili a risorse chiave (IP, DNS, ecc.)
+
+
+# todo
+
+aws acm request-certificate \
+  --domain-name example.com \
+  --validation-method DNS

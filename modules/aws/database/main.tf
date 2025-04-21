@@ -22,6 +22,15 @@ resource "aws_security_group" "rds_sg" {
     description     = "Accesso dalle istanze EC2"
   }
 
+  # Accesso diretto IP custom
+  ingress {
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = [var.custom_static_ip]
+    description = "Accesso diretto da ip"
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -46,6 +55,10 @@ resource "aws_db_instance" "this" {
   db_subnet_group_name   = aws_db_subnet_group.this.name
   vpc_security_group_ids = [aws_security_group.rds_sg.id]
   skip_final_snapshot    = true
+
+  # Backup config
+  backup_retention_period = var.db_backup_retention
+  backup_window           = var.db_backup_window
 
   tags = {
     Name = "${var.name}-rds"

@@ -32,14 +32,32 @@ resource "aws_lb_target_group" "this" {
 # Crea un listener per il Load Balancer
 resource "aws_lb_listener" "http" {
   load_balancer_arn = aws_lb.this.arn
-  port              = var.listener_port
-  protocol          = var.listener_protocol
+  port              = var.listener_http_port
+  protocol          = var.listener_http_protocol
+
+  default_action {
+    type = "redirect"
+    redirect {
+      port        = var.listener_https_port
+      protocol    = var.listener_https_protocol
+      status_code = "HTTP_301"
+    }
+  }
+}
+
+resource "aws_lb_listener" "https" {
+  load_balancer_arn = aws_lb.this.arn
+  port              = var.listener_https_port
+  protocol          = var.listener_https_protocol
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  certificate_arn   = var.certificate_arn
 
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.this.arn
   }
 }
+
 
 # Crea un target group attachment per ogni istanza associata al Load Balancer
 resource "aws_lb_target_group_attachment" "this" {

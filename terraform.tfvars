@@ -1,3 +1,5 @@
+database_custom_static_ip = "203.0.113.10/32" # IP statico custom di accesso
+
 ## AWS
 aws_region = "us-west-1"
 ## Google Cloud
@@ -34,7 +36,7 @@ networking_secondary_firewall_rules = [
     protocol      = "tcp"
     ports         = ["22"]
     direction     = "INGRESS"
-    source_ranges = ["203.0.113.10/32"] # IP statico ufficio
+    source_ranges = ["203.0.113.10/32"] # IP statico custom
     target_tags   = ["secondary-vm-name-app"]
   }
 ]
@@ -84,14 +86,16 @@ compute_secondary_disk_type    = "pd-balanced"
 
 # DATABASE SETTINGS
 ## modules/aws/database - AWS
-database_primary_name       = "primary-db-name"
-database_primary_identifier = "primary-db-identifier"
-database_primary_version    = "mysql"
-database_primary_tier       = "db.t3.medium"
-database_primary_storage    = 20
-database_primary_db_name    = "myappdb"
-database_primary_username   = "admin"
-database_primary_password   = "MyStr0ngPassw0rd!"
+database_primary_name             = "primary-db-name"
+database_primary_identifier       = "primary-db-identifier"
+database_primary_version          = "mysql"
+database_primary_tier             = "db.t3.medium"
+database_primary_storage          = 20
+database_primary_db_name          = "myappdb"
+database_primary_username         = "admin"
+database_primary_password         = "MyStr0ngPassw0rd!"
+database_primary_backup_retention = 7             # (0 per disattivare)
+database_primary_backup_window    = "03:00-04:00" # (formato hh:mm-hh:mm)
 ## modules/google/database - Google Cloud
 database_secondary_name              = "secondary-db-name"
 database_secondary_version           = "MYSQL_8_0"
@@ -100,28 +104,21 @@ database_secondary_availability_type = "ZONAL"
 database_secondary_storage           = 20
 database_secondary_disk_type         = "PD_SSD"
 database_secondary_backup            = true
-authorized_network_name              = "my-office-network"
 database_secondary_db_name           = "myappdb"
 database_secondary_username          = "admin"
 database_secondary_password          = "MyStr0ngPassw0rd!"
+database_secondary_backup_window     = "03:00" # (formato hh:mm)
 
 # LOAD BALANCER SETTINGS
 ## modules/aws/load_balancer - AWS
-lb_primary_internal                   = false
 lb_primary_type                       = "application"
-lb_primary_health_path                = "/"
-lb_primary_health_protocol            = "HTTP"
-lb_primary_health_matcher             = "200"
-lb_primary_health_interval            = 30
-lb_primary_health_timeout             = 5
-lb_primary_health_healthy_threshold   = 2
-lb_primary_health_unhealthy_threshold = 2
+lb_primary_internal                   = false
+lb_primary_certificate_arn            = "arn:aws:acm:us-west-1:123456789012:certificate/abcde-1234-xyz"
 lb_primary_tags = {
   Environment = "production"
   ManagedBy   = "Terraform"
 }
 ## modules/google/load_balancer - Google Cloud
-lb_secondary_health_path                = "/"
 lb_secondary_health_port                = 80
 lb_secondary_health_interval            = 30
 lb_secondary_health_timeout             = 5
