@@ -96,13 +96,10 @@ module "load_balancer_secondary" {
   backend_port_name                = var.lb_secondary_backend_port_name
   backend_timeout_sec              = var.lb_secondary_backend_timeout_sec
 
-  health_check_port                = var.lb_secondary_health_port
-  health_check_interval            = var.lb_secondary_health_interval
-  health_check_timeout             = var.lb_secondary_health_timeout
-  health_check_healthy_threshold   = var.lb_secondary_health_healthy_threshold
-  health_check_unhealthy_threshold = var.lb_secondary_health_unhealthy_threshold
-  forwarding_port_range            = var.lb_secondary_forwarding_port_range
-  forwarding_ip_protocol           = var.lb_secondary_forwarding_ip_protocol
+
+
+
+  domain_name = var.domain_name
 }
 
 

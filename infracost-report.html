@@ -146,7 +146,7 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
         </li>
         <li>
           <span class="label">Time generated:</span>
-          <span class="value">2025-04-17 19:54:12 CEST</span>
+          <span class="value">2025-04-22 18:07:23 CEST</span>
         </li>
       </ul>
     </div>
@@ -316,7 +316,7 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
     <td class="name">
       
       
-      module.compute_secondary.google_compute_instance.app[0]
+      module.compute_secondary.google_compute_instance.app
     </td>
     
   
@@ -332,6 +332,31 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
   
 
   </tr>
+  
+    <tr class="tags">
+      <td class="name">
+        
+        
+          
+          
+        
+        <span class="label">Tags:</span>
+        <span>environment=production</span>
+      </td>
+      
+  
+    <td class="monthly-quantity"></td>
+  
+  
+    <td class="unit"></td>
+  
+  
+  
+  
+    <td class="monthly-cost"></td>
+  
+
+    </tr>
   
   
   
@@ -363,11 +388,11 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
     <td class="name">
       
       <span class="arrow">&#8627;</span>
-      Standard provisioned storage (pd-standard)
+      Balanced provisioned storage (pd-balanced)
     </td>
     
       
-        <td class="monthly-quantity">10</td>
+        <td class="monthly-quantity">20</td>
       
       
         <td class="unit">GB</td>
@@ -375,7 +400,7 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
       
       
       
-        <td class="monthly-cost">$0.40</td>
+        <td class="monthly-cost">$2.00</td>
       
     
   </tr>
@@ -415,7 +440,7 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
           
         
         <span class="label">Tags:</span>
-        <span>Name=name-infracost-mock-44956be29f34-rds</span>
+        <span>Name=primary-db-name-rds</span>
       </td>
       
   
@@ -480,6 +505,19 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
   </tr>
 
   
+    
+  <tr class="cost-component">
+    <td class="name">
+      
+      <span class="arrow">&#8627;</span>
+      Additional backup storage
+    </td>
+    
+      <td colspan="3" class="usage-cost">Cost depends on usage: $0.095 per GB</td>
+    
+  </tr>
+
+  
   
 
       
@@ -489,7 +527,7 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
     <td class="name">
       
       
-      module.compute_primary.aws_instance.app[0]
+      module.compute_primary.aws_instance.app
     </td>
     
   
@@ -514,7 +552,7 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
           
         
         <span class="label">Tags:</span>
-        <span>Name=name-infracost-mock-44956be29f34-app-1</span>
+        <span>Name=primary-vm-name-app</span>
       </td>
       
   
@@ -587,11 +625,11 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
     <td class="name">
       &nbsp;&nbsp;&nbsp;&nbsp;
       <span class="arrow">&#8627;</span>
-      Storage (general purpose SSD, gp2)
+      Storage (general purpose SSD, gp3)
     </td>
     
       
-        <td class="monthly-quantity">8</td>
+        <td class="monthly-quantity">20</td>
       
       
         <td class="unit">GB</td>
@@ -599,7 +637,7 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
       
       
       
-        <td class="monthly-cost">$0.80</td>
+        <td class="monthly-cost">$1.60</td>
       
     
   </tr>
@@ -708,7 +746,71 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
     <td class="name">
       
       
-      module.load_balancer_secondary.google_compute_global_forwarding_rule.this
+      module.load_balancer_secondary.google_compute_global_forwarding_rule.http
+    </td>
+    
+  
+    <td class="monthly-quantity"></td>
+  
+  
+    <td class="unit"></td>
+  
+  
+  
+  
+    <td class="monthly-cost"></td>
+  
+
+  </tr>
+  
+  
+  
+    
+  <tr class="cost-component">
+    <td class="name">
+      
+      <span class="arrow">&#8627;</span>
+      Forwarding rules
+    </td>
+    
+      
+        <td class="monthly-quantity">730</td>
+      
+      
+        <td class="unit">hours</td>
+      
+      
+      
+      
+        <td class="monthly-cost">$7.30</td>
+      
+    
+  </tr>
+
+  
+    
+  <tr class="cost-component">
+    <td class="name">
+      
+      <span class="arrow">&#8627;</span>
+      Ingress data
+    </td>
+    
+      <td colspan="3" class="usage-cost">Cost depends on usage: $0.008 per GB</td>
+    
+  </tr>
+
+  
+  
+
+      
+        
+  
+  <tr class="resource top-level">
+    <td class="name">
+      
+      
+      module.load_balancer_secondary.google_compute_global_forwarding_rule.https
     </td>
     
   
@@ -823,7 +925,61 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
     <td class="name">
       
       
-      module.load_balancer_secondary.google_compute_target_http_proxy.this
+      module.load_balancer_secondary.google_compute_target_http_proxy.http
+    </td>
+    
+  
+    <td class="monthly-quantity"></td>
+  
+  
+    <td class="unit"></td>
+  
+  
+  
+  
+    <td class="monthly-cost"></td>
+  
+
+  </tr>
+  
+  
+  
+    
+  <tr class="cost-component">
+    <td class="name">
+      
+      <span class="arrow">&#8627;</span>
+      Proxy instance
+    </td>
+    
+      <td colspan="3" class="usage-cost">Cost depends on usage: $0.025 per hours</td>
+    
+  </tr>
+
+  
+    
+  <tr class="cost-component">
+    <td class="name">
+      
+      <span class="arrow">&#8627;</span>
+      Data processed
+    </td>
+    
+      <td colspan="3" class="usage-cost">Cost depends on usage: $0.008 per GB</td>
+    
+  </tr>
+
+  
+  
+
+      
+        
+  
+  <tr class="resource top-level">
+    <td class="name">
+      
+      
+      module.load_balancer_secondary.google_compute_target_https_proxy.https
     </td>
     
   
@@ -1007,7 +1163,7 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
       
       <tr class="total">
         <td class="name" colspan="3">Project total</td>
-        <td class="monthly-cost">$252.98</td>
+        <td class="monthly-cost">$262.68</td>
       </tr>
     </tbody>
   </table>
@@ -1018,13 +1174,13 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
       <tbody>
         <tr class="total">
           <td class="name" colspan="3">Overall total</td>
-          <td class="monthly-cost">$252.98</td>
+          <td class="monthly-cost">$262.68</td>
         </tr>
       </tbody>
     </table>
 
     <div class="warnings">
-      <p>28 cloud resources were detected:<br />∙ 10 were estimated<br />∙ 18 were free</p>
+      <p>37 cloud resources were detected:<br />∙ 12 were estimated<br />∙ 25 were free</p>
     </div>
   </body>
 </html>

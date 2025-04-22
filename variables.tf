@@ -4,6 +4,11 @@ variable "database_custom_static_ip" {
   type        = string
 }
 
+variable "domain_name" {
+  description = "Dominio applicazione"
+  type        = string
+}
+
 # providers.tf - AWS 
 variable "aws_region" {
   description = "Regione AWS per l'ambiente primario"
@@ -295,43 +300,6 @@ variable "lb_secondary_backend_timeout_sec" {
   description = "Timeout del backend in secondi"
   type        = number
 }
-
-variable "lb_secondary_health_port" {
-  description = "Porta per l'health check"
-  type        = number
-}
-
-variable "lb_secondary_health_interval" {
-  description = "Intervallo tra i check (in sec)"
-  type        = number
-}
-
-variable "lb_secondary_health_timeout" {
-  description = "Timeout del check (in sec)"
-  type        = number
-}
-
-variable "lb_secondary_health_healthy_threshold" {
-  description = "Check OK richiesti per host sano"
-  type        = number
-}
-
-variable "lb_secondary_health_unhealthy_threshold" {
-  description = "Check falliti per host non sano"
-  type        = number
-}
-
-# Forwarding Rule
-variable "lb_secondary_forwarding_port_range" {
-  description = "Range di porte forwarding"
-  type        = string
-}
-
-variable "lb_secondary_forwarding_ip_protocol" {
-  description = "Protocollo IP (TCP/UDP)"
-  type        = string
-}
-
 
 ## Route 53 - Failover
 variable "route53_zone_id" {

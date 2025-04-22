@@ -1,4 +1,6 @@
 database_custom_static_ip = "203.0.113.10/32" # IP statico custom di accesso
+domain_name  = "app.example.com"
+
 
 ## AWS
 aws_region = "us-west-1"
@@ -119,11 +121,8 @@ lb_primary_tags = {
   ManagedBy   = "Terraform"
 }
 ## modules/google/load_balancer - Google Cloud
-lb_secondary_health_port                = 80
-lb_secondary_health_interval            = 30
-lb_secondary_health_timeout             = 5
-lb_secondary_health_healthy_threshold   = 2
-lb_secondary_health_unhealthy_threshold = 2
+
+
 
 # FAILOVER SETTINGS
 ## modules/route53_failover - Route53 Failover

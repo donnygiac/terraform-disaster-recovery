@@ -1,11 +1,16 @@
 variable "name" {
-  description = "Nome del Load Balancer"
+  description = "Nome base per le risorse del Load Balancer"
   type        = string
-  default     = "secondary-lb" # ok default
+  default     = "secondary-lb"
+}
+
+variable "domain_name" {
+  description = "Dominio da usare per il certificato SSL"
+  type        = string
 }
 
 variable "instance_group_self_link" {
-  description = "Self link dell'instance group da bilanciare"
+  description = "Self link del Managed Instance Group da bilanciare"
   type        = string
 }
 
@@ -28,51 +33,63 @@ variable "backend_timeout_sec" {
 }
 
 variable "enable_cdn" {
-  description = "Abilitare Google Cloud CDN"
+  description = "Abilitare la CDN per il backend"
   type        = bool
-  default     = false # ok default
+  default     = false
 }
 
 # Health check
 variable "health_check_path" {
-  description = "Percorso dell'health check"
+  description = "Path per l'health check"
   type        = string
-  default     = "/" # ok default
+  default     = "/"
 }
 
 variable "health_check_port" {
   description = "Porta da usare per l'health check"
   type        = number
+  default     = 443
 }
 
 variable "health_check_interval" {
-  description = "Intervallo tra health check (in sec)"
+  description = "Intervallo tra health check (secondi)"
   type        = number
+  default     = 30
 }
 
 variable "health_check_timeout" {
-  description = "Timeout health check (in sec)"
+  description = "Timeout del health check (secondi)"
   type        = number
+  default     = 5
 }
 
 variable "health_check_healthy_threshold" {
-  description = "Check OK necessari per host sano"
+  description = "Numero di successi per considerare sano"
   type        = number
+  default     = 2
 }
 
 variable "health_check_unhealthy_threshold" {
-  description = "Check falliti per marcare host non sano"
+  description = "Numero di fallimenti per considerare non sano"
   type        = number
+  default     = 2
 }
 
-variable "forwarding_port_range" {
-  description = "Range di porte (es. 80)"
+# Forwarding rules
+variable "forwarding_http_port_range" {
+  description = "Porta di forwarding per HTTP"
   type        = string
   default     = "80"
 }
 
+variable "forwarding_https_port_range" {
+  description = "Porta di forwarding per HTTPS"
+  type        = string
+  default     = "443"
+}
+
 variable "forwarding_ip_protocol" {
-  description = "Protocollo IP (TCP/UDP)"
+  description = "Protocollo IP da usare per il forwarding (es. TCP)"
   type        = string
   default     = "TCP"
 }
