@@ -16,10 +16,15 @@ resource "google_compute_instance" "app" {
     subnetwork = var.subnetwork
 
     access_config {
-      # Assegna IP pubblico
+      # Abilita IP pubblico
     }
   }
 
-  tags   = ["${var.name}-app"]
-  labels = var.labels
+  tags = ["${var.name}-app"]
+
+  labels = {
+    name        = "${var.name}-app"
+    environment = var.environment
+    managed_by  = "terraform"
+  }
 }

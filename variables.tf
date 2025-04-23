@@ -9,6 +9,11 @@ variable "domain_name" {
   type        = string
 }
 
+variable "environment" {
+  description = "Ambiente di deploy (es. dev, prod)"
+  type        = string
+}
+
 # providers.tf - AWS 
 variable "aws_region" {
   description = "Regione AWS per l'ambiente primario"
@@ -124,28 +129,11 @@ variable "database_primary_backup_window" {
   type        = string
 }
 
-
 # modules/load_balancer - AWS
-variable "lb_primary_type" {
-  description = "Tipo di LB: application o network"
-  type        = string
-}
-
-variable "lb_primary_internal" {
-  description = "LB interno (true) o pubblico (false)"
-  type        = bool
-}
-
 variable "lb_primary_certificate_arn" {
   description = "ARN del certificato SSL per HTTPS"
   type        = string
 }
-
-variable "lb_primary_tags" {
-  description = "Tag da assegnare al Load Balancer"
-  type        = map(string)
-}
-
 
 # providers.tf - GOOGLE
 variable "google_project" {
@@ -276,30 +264,7 @@ variable "database_secondary_backup_window" {
 
 
 # modules/google/load_balancer - GOOGLE
-variable "lb_secondary_name" {
-  description = "Nome base per il Load Balancer GCP"
-  type        = string
-}
 
-variable "lb_secondary_instance_group_self_link" {
-  description = "Self link del managed instance group GCP"
-  type        = string
-}
-
-variable "lb_secondary_backend_protocol" {
-  description = "Protocollo del backend (es. HTTP)"
-  type        = string
-}
-
-variable "lb_secondary_backend_port_name" {
-  description = "Nome porta del backend (es. http)"
-  type        = string
-}
-
-variable "lb_secondary_backend_timeout_sec" {
-  description = "Timeout del backend in secondi"
-  type        = number
-}
 
 ## Route 53 - Failover
 variable "route53_zone_id" {

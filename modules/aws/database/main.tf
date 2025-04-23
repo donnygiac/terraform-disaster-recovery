@@ -4,7 +4,9 @@ resource "aws_db_subnet_group" "this" {
   subnet_ids = var.subnet_ids
 
   tags = {
-    Name = "${var.name}-subnet-group"
+    name = "${var.name}-subnet-group"
+    environment = var.environment
+    managed_by = "terraform"
   }
 }
 
@@ -39,7 +41,9 @@ resource "aws_security_group" "rds_sg" {
   }
 
   tags = {
-    Name = "${var.name}-rds-sg"
+    name = "${var.name}-rds-sg"
+    environment = var.environment
+    managed_by = "terraform"
   }
 }
 
@@ -61,6 +65,8 @@ resource "aws_db_instance" "this" {
   backup_window           = var.db_backup_window
 
   tags = {
-    Name = "${var.name}-rds"
+    name = "${var.name}-rds"
+    environment = var.environment
+    managed_by = "terraform"
   }
 }

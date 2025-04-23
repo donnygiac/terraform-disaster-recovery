@@ -27,11 +27,13 @@ variable "instance_ids" {
 variable "internal" {
   description = "Indica se il Load Balancer è interno (true) o pubblico (false)"
   type        = bool
+  default     = false # ok default
 }
 
 variable "load_balancer_type" {
   description = "Tipo di Load Balancer (application, network)"
   type        = string
+  default     = "application" # ok default
 }
 
 variable "target_group_name" {
@@ -118,12 +120,12 @@ variable "health_check_unhealthy_threshold" {
   default     = 2 # ok default
 }
 
-variable "tags" {
-  description = "Mappa di tag da assegnare alle risorse"
-  type        = map(string)
-}
-
 variable "certificate_arn" {
   description = "ARN del certificato SSL per HTTPS"
+  type        = string
+}
+
+variable "environment" {
+  description = "Ambiente (es. production, staging)"
   type        = string
 }

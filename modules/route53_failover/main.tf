@@ -4,6 +4,12 @@ resource "aws_route53_health_check" "primary_health" {
   resource_path     = var.health_check_path
   failure_threshold = var.health_check_failure_threshold
   request_interval  = var.health_check_interval
+
+  tags = {
+    name        = "route53-primary-health"
+    environment = var.environment
+    managed_by  = "terraform"
+  }
 }
 
 resource "aws_route53_record" "primary" {

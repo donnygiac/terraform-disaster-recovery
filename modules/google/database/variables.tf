@@ -69,3 +69,8 @@ variable "db_backup_window" {
   description = "Finestra di backup del DB"
   type        = string  
 }
+
+variable "environment" {
+  description = "Ambiente di deploy (es. dev, staging, prod)"
+  type        = string
+}

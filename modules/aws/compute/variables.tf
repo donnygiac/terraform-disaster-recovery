@@ -28,7 +28,6 @@ variable "volume_type" {
   type        = string
 }
 
-
 variable "name" {
   description = "Prefisso per il nome delle risorse compute"
   type        = string
@@ -52,4 +51,9 @@ variable "egress_rules" {
     protocol    = string
     cidr_blocks = list(string)
   }))
+}
+
+variable "environment" {
+  description = "Ambiente di deploy (es. dev, prod)"
+  type        = string
 }

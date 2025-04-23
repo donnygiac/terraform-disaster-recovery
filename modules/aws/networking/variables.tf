@@ -8,3 +8,8 @@ variable "name" {
   type        = string
   default     = "primary"
 }
+
+variable "environment" {
+  description = "Ambiente di deploy (es. dev, prod)"
+  type        = string
+}

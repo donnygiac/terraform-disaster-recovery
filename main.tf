@@ -1,9 +1,10 @@
 #AWS Infrastructure
 
 module "networking_primary" {
-  source   = "./modules/aws/networking"
-  vpc_cidr = var.vpc_cidr_primary        //ok
-  name     = var.networking_primary_name //ok
+  source      = "./modules/aws/networking"
+  vpc_cidr    = var.vpc_cidr_primary        //ok
+  name        = var.networking_primary_name //ok
+  environment = var.environment             //ok
 }
 
 module "compute_primary" {
@@ -17,6 +18,7 @@ module "compute_primary" {
   volume_type   = var.compute_primary_volume_type   //ok
   ingress_rules = var.compute_primary_ingress_rules //ok
   egress_rules  = var.compute_primary_egress_rules  //ok
+  environment   = var.environment                   //ok
 }
 
 module "database_primary" {
@@ -35,18 +37,17 @@ module "database_primary" {
   db_password         = var.database_primary_password         //ok
   db_backup_retention = var.database_primary_backup_retention //ok
   db_backup_window    = var.database_primary_backup_window    //ok
+  environment         = var.environment                       //ok
 }
 
 module "load_balancer_primary" {
-  source             = "./modules/aws/load_balancer"
-  vpc_id             = module.networking_primary.vpc_id
-  subnet_ids         = module.networking_primary.public_subnets
-  security_group_id  = module.compute_primary.app_sg_id
-  instance_ids       = module.compute_primary.instance_ids
-  load_balancer_type = var.lb_primary_type
-  internal           = var.lb_primary_internal
-  certificate_arn    = var.lb_primary_certificate_arn
-  tags               = var.lb_primary_tags
+  source            = "./modules/aws/load_balancer"
+  vpc_id            = module.networking_primary.vpc_id
+  subnet_ids        = module.networking_primary.public_subnets
+  security_group_id = module.compute_primary.app_sg_id
+  instance_ids      = module.compute_primary.instance_ids
+  certificate_arn   = var.lb_primary_certificate_arn //ok
+  environment       = var.environment                //ok
 }
 
 # Google Cloud Infrastructure
@@ -66,9 +67,11 @@ module "compute_secondary" {
   subnetwork   = module.networking_secondary.subnetwork_name
   machine_type = var.compute_secondary_machine_type //ok
   zone         = var.google_zone                    //ok
+  region       = var.google_region                  //ok
   image        = var.compute_secondary_image        //ok
   disk_size    = var.compute_secondary_disk_size    //ok
   disk_type    = var.compute_secondary_disk_type    //ok
+  environment  = var.environment                    //ok
 }
 
 module "database_secondary" {
@@ -86,20 +89,13 @@ module "database_secondary" {
   db_username       = var.database_secondary_username          //ok
   db_password       = var.database_secondary_password          //ok 
   db_backup_window  = var.database_secondary_backup_window     //ok
+  environment       = var.environment                          //ok
 }
 
 module "load_balancer_secondary" {
-  source                           = "./modules/google/load_balancer"
-  name                             = var.lb_secondary_name
-  instance_group_self_link         = var.lb_secondary_instance_group_self_link
-  backend_protocol                 = var.lb_secondary_backend_protocol
-  backend_port_name                = var.lb_secondary_backend_port_name
-  backend_timeout_sec              = var.lb_secondary_backend_timeout_sec
-
-
-
-
-  domain_name = var.domain_name
+  source                   = "./modules/google/load_balancer"
+  instance_group_self_link = module.compute_secondary.instance_group_self_link //ok
+  domain_name              = var.domain_name                                   //ok
 }
 
 
@@ -107,15 +103,16 @@ module "load_balancer_secondary" {
 module "route53_failover" {
   source                         = "./modules/route53_failover"
   zone_id                        = var.route53_zone_id      //ok
-  record_name                    = var.route53_record_name  //ok
-  primary_fqdn                   = var.route53_primary_fqdn //ok
+  record_name                    = var.domain_name  //ok
+  primary_fqdn                   = var.domain_name //ok
   primary_elb_dns                = module.load_balancer_primary.forwarding_dns
   primary_elb_zone_id            = module.load_balancer_primary.forwarding_zone_id
-  secondary_ip                   = module.compute_secondary.instance_ips[0]
+  secondary_ip                   = module.compute_secondary.instance_ip
   health_check_path              = var.route53_health_check_path              //ok
   health_check_type              = var.route53_health_check_type              //ok
   health_check_interval          = var.route53_health_check_interval          //ok
   health_check_failure_threshold = var.route53_health_check_failure_threshold //ok
   evaluate_target_health         = var.route53_evaluate_target_health         //ok
   secondary_ttl                  = var.route53_secondary_ttl                  //ok
+  environment                    = var.environment                            //ok
 }

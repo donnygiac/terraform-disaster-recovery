@@ -11,9 +11,9 @@ resource "google_sql_database_instance" "this" {
     disk_type         = var.disk_type
 
     backup_configuration {
-      enabled = var.backup_enabled
+      enabled    = var.backup_enabled
       start_time = var.db_backup_window
-      location  = var.region
+      location   = var.region
     }
 
     ip_configuration {
@@ -21,10 +21,15 @@ resource "google_sql_database_instance" "this" {
       dynamic "authorized_networks" {
         for_each = [var.custom_static_ip]
         content {
-          name = var.authorized_network_name
+          name  = var.authorized_network_name
           value = authorized_networks.value
         }
       }
+    }
+    user_labels = {
+      name        = "${var.name}-db"
+      environment = var.environment
+      managed_by  = "terraform"
     }
   }
 }

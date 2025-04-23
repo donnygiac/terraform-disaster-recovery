@@ -6,7 +6,11 @@ resource "aws_lb" "this" {
   subnets            = var.subnet_ids
   security_groups    = [var.security_group_id]
 
-  tags = var.tags
+  tags = {
+    name        = "${var.name}-alb"
+    environment = var.environment
+    managedBy   = "terraform"
+  }
 }
 
 # Crea un target group
@@ -26,7 +30,11 @@ resource "aws_lb_target_group" "this" {
     unhealthy_threshold = var.health_check_unhealthy_threshold
   }
 
-  tags = var.tags
+  tags = {
+    name        = "${var.name}-alb"
+    environment = var.environment
+    managed_by   = "terraform"
+  }
 }
 
 # Crea un listener per il Load Balancer

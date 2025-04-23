@@ -8,6 +8,11 @@ variable "record_name" {
   type        = string
 }
 
+variable "environment" {
+  description = "Ambiente di deploy (es. dev, staging, prod)"
+  type        = string
+}
+
 # PRIMARY (AWS)
 variable "primary_fqdn" {
   description = "FQDN per il controllo di health check (es. app.primary.miosito.com)"
@@ -63,3 +68,4 @@ variable "secondary_ttl" {
   type        = number
   default     = 60
 }
+

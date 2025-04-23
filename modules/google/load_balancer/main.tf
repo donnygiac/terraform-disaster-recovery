@@ -1,9 +1,9 @@
 # Health check
 resource "google_compute_health_check" "https" {
-  name               = "${var.name}-hc"
-  check_interval_sec = var.health_check_interval
-  timeout_sec        = var.health_check_timeout
-  healthy_threshold  = var.health_check_healthy_threshold
+  name                = "${var.name}-hc"
+  check_interval_sec  = var.health_check_interval
+  timeout_sec         = var.health_check_timeout
+  healthy_threshold   = var.health_check_healthy_threshold
   unhealthy_threshold = var.health_check_unhealthy_threshold
 
   https_health_check {
@@ -32,8 +32,6 @@ resource "google_compute_backend_service" "backend" {
   backend {
     group = var.instance_group_self_link
   }
-
-  enable_cdn = var.enable_cdn
 }
 
 # URL map per HTTPS (normale routing)

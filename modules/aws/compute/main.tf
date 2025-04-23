@@ -12,7 +12,9 @@ resource "aws_instance" "app" {
   }
 
   tags = {
-    Name = "${var.name}-app"
+    name = "${var.name}-app"
+    environment = var.environment
+    managed_by = "terraform"
   }
 }
 
@@ -41,7 +43,9 @@ resource "aws_security_group" "app_sg" {
   }
 
   tags = {
-    Name = "${var.name}-sg"
+    name = "${var.name}-sg"
+    environment = var.environment
+    managed_by = "terraform"
   }
 }
 

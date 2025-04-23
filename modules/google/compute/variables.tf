@@ -13,6 +13,11 @@ variable "zone" {
   type        = string
 }
 
+variable "region" {
+  description = "Regione GCP"
+  type        = string
+}
+
 variable "image" {
   description = "Immagine per il disco boot (es. debian)"
   type        = string
@@ -21,13 +26,11 @@ variable "image" {
 variable "disk_size" {
   description = "Dimensione del disco boot (GB)"
   type        = number
-  default     = 20
 }
 
 variable "disk_type" {
   description = "Tipo di disco (es. pd-balanced, pd-ssd, pd-standard)"
   type        = string
-  default     = "pd-balanced"
 }
 
 
@@ -44,7 +47,9 @@ variable "subnetwork" {
 variable "labels" {
   description = "Etichette da applicare alla VM"
   type        = map(string)
-  default     = {
-    environment = "production"
-  }
+}
+
+variable "environment" {
+  description = "Ambiente di deploy (es. production, staging)"
+  type        = string
 }

@@ -67,3 +67,8 @@ variable "db_backup_window" {
   description = "Finestra oraria per i backup (formato hh:mm-hh:mm)"
   type        = string
 }
+
+variable "environment" {
+  description = "Ambiente di deploy (es. dev, prod)"
+  type        = string
+}
