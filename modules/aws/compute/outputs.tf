@@ -1,3 +1,4 @@
+# Outputs per il modulo AWS Compute
 output "instance_ids" {
   description = "Lista degli ID delle istanze EC2"
   value       = aws_instance.app[*].id

@@ -1,4 +1,24 @@
-# Health check
+# Network Endpoint Group (NEG) zonale
+resource "google_compute_network_endpoint_group" "neg" {
+  name                  = "${var.name}-neg"
+  network               = var.network
+  subnetwork            = var.subnetwork
+  zone                  = var.zone
+  default_port          = var.backend_port
+  network_endpoint_type = "GCE_VM_IP_PORT"
+}
+
+# Endpoint nel NEG: punta alla singola VM
+resource "google_compute_network_endpoint" "endpoint" {
+  network_endpoint_group = google_compute_network_endpoint_group.neg.name
+  zone                   = var.zone
+
+  instance   = var.instance_name
+  ip_address = var.instance_ip
+  port       = var.backend_port
+}
+
+# Health Check
 resource "google_compute_health_check" "https" {
   name                = "${var.name}-hc"
   check_interval_sec  = var.health_check_interval
@@ -12,7 +32,7 @@ resource "google_compute_health_check" "https" {
   }
 }
 
-# Certificato gestito da Google
+# Certificato HTTPS gestito da Google
 resource "google_compute_managed_ssl_certificate" "cert" {
   name = "${var.name}-cert"
   managed {
@@ -20,7 +40,7 @@ resource "google_compute_managed_ssl_certificate" "cert" {
   }
 }
 
-# Backend service
+# Backend Service con NEG
 resource "google_compute_backend_service" "backend" {
   name                  = "${var.name}-backend"
   load_balancing_scheme = "EXTERNAL"
@@ -30,7 +50,7 @@ resource "google_compute_backend_service" "backend" {
   health_checks         = [google_compute_health_check.https.id]
 
   backend {
-    group = var.instance_group_self_link
+    group = google_compute_network_endpoint_group.neg.id
   }
 }
 

@@ -6,7 +6,7 @@ resource "aws_vpc" "this" {
 
   tags = {
     name = "${var.name}-vpc"
-    nnvironment = var.environment
+    environment = var.environment
     managed_by = "terraform"
   }
 }

@@ -189,12 +189,6 @@ variable "compute_secondary_image" {
   type        = string
 }
 
-variable "compute_secondary_labels" {
-  description = "Etichette chiave-valore da associare alla VM"
-  type        = map(string)
-  default     = {}
-}
-
 variable "compute_secondary_disk_size" {
   description = "Dimensione del disco boot in GB"
   type        = number
@@ -280,11 +274,6 @@ variable "route53_record_name" {
 # PRIMARY (AWS)
 variable "route53_primary_fqdn" {
   description = "FQDN del servizio primario per l'health check"
-  type        = string
-}
-
-variable "route53_primary_elb_zone_id" {
-  description = "Hosted zone ID del Load Balancer AWS"
   type        = string
 }
 

@@ -44,11 +44,6 @@ variable "subnetwork" {
   type        = string
 }
 
-variable "labels" {
-  description = "Etichette da applicare alla VM"
-  type        = map(string)
-}
-
 variable "environment" {
   description = "Ambiente di deploy (es. production, staging)"
   type        = string

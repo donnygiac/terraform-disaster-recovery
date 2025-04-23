@@ -9,11 +9,6 @@ variable "domain_name" {
   type        = string
 }
 
-variable "instance_group_self_link" {
-  description = "Self link del Managed Instance Group da bilanciare"
-  type        = string
-}
-
 variable "backend_protocol" {
   description = "Protocollo per il backend service"
   type        = string
@@ -86,4 +81,31 @@ variable "forwarding_ip_protocol" {
   description = "Protocollo IP da usare per il forwarding (es. TCP)"
   type        = string
   default     = "TCP" //ok default
+}
+
+
+//
+variable "network" {
+  type = string
+}
+
+variable "subnetwork" {
+  type = string
+}
+
+variable "zone" {
+  type = string
+}
+
+variable "instance_name" {
+  type = string
+}
+
+variable "instance_ip" {
+  type = string
+}
+
+variable "backend_port" {
+  type    = number
+  default = 443
 }

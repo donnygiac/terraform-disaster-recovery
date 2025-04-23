@@ -1,3 +1,4 @@
+# Variabili per il modulo AWS Compute
 variable "vpc_id" {
   description = "ID della VPC in cui creare le istanze"
   type        = string
