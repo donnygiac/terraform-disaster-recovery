@@ -23,6 +23,11 @@ variable "custom_static_ip" {
   type        = string
 }
 
+variable "db_identifier" {
+  description = "Identificatore univoco per l'istanza RDS"
+  type        = string
+}
+
 variable "db_engine" {
   description = "Motore del database (es. mysql)"
   type        = string
@@ -40,11 +45,6 @@ variable "db_storage_gb" {
 
 variable "db_name" {
   description = "Nome del database"
-  type        = string
-}
-
-variable "db_identifier" {
-  description = "Identificatore univoco per l'istanza RDS"
   type        = string
 }
 
@@ -68,7 +68,7 @@ variable "db_backup_window" {
   type        = string
 }
 
-variable "environment" {
-  description = "Ambiente di deploy (es. dev, prod)"
-  type        = string
+variable "custom_tags" {
+  description = "Tags personalizzati da applicare alle risorse"
+  type        = map(string)
 }

@@ -18,19 +18,26 @@ resource "google_sql_database_instance" "this" {
 
     ip_configuration {
       ipv4_enabled = true
-      dynamic "authorized_networks" {
-        for_each = [var.custom_static_ip]
-        content {
-          name  = var.authorized_network_name
-          value = authorized_networks.value
-        }
+      # Accesso da IP custom statico
+      authorized_networks {
+        name  = "custom-static-ip"
+        value = var.custom_static_ip
       }
+
+      # Accesso dalla VM GCP
+      authorized_networks {
+        name  = "vm-ip"
+        value = var.vm_ip
+      }
+
     }
-    user_labels = {
-      name        = "${var.name}-db"
-      environment = var.environment
-      managed_by  = "terraform"
-    }
+
+    user_labels = merge(
+      {
+        name = "${var.name}-db"
+      },
+      var.custom_tags
+    )
   }
 }
 

@@ -1,7 +1,6 @@
 variable "name" {
   description = "Prefisso per le risorse di rete"
   type        = string
-  default     = "secondary"
 }
 
 variable "subnet_cidr" {

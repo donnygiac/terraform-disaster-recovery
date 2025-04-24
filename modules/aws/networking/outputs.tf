@@ -3,7 +3,8 @@ output "vpc_id" {
   value       = aws_vpc.this.id
 }
 
-output "public_subnets" {
-  description = "Lista degli ID delle subnet pubbliche create"
-  value       = aws_subnet.public[*].id
+output "public_subnet_id" {
+  description = "ID della subnet pubblica"
+  value       = aws_subnet.public.id
 }
+

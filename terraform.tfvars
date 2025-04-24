@@ -1,6 +1,6 @@
 database_custom_static_ip = "203.0.113.10/32" # IP statico custom di accesso
-domain_name  = "app.example.com"
-environment  = "production" # Ambiente di deploy (es. dev, prod)
+domain_name               = "app.example.com"
+environment               = "production" # Ambiente di deploy (es. dev, prod)
 
 ## AWS
 aws_region = "us-west-1"
@@ -110,14 +110,6 @@ database_secondary_db_name           = "myappdb"
 database_secondary_username          = "admin"
 database_secondary_password          = "MyStr0ngPassw0rd!"
 database_secondary_backup_window     = "03:00" # (formato hh:mm)
-
-# LOAD BALANCER SETTINGS
-## modules/aws/load_balancer - AWS
-lb_primary_certificate_arn            = "arn:aws:acm:us-west-1:123456789012:certificate/abcde-1234-xyz" //ok
-
-## modules/google/load_balancer - Google Cloud
-
-
 
 # FAILOVER SETTINGS
 ## modules/route53_failover - Route53 Failover

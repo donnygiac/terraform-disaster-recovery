@@ -59,10 +59,9 @@ variable "db_password" {
   sensitive   = true
 }
 
-variable "authorized_network_name" {
-  description = "Nome della rete autorizzata per connettersi al DB"
+variable "vm_ip" {
+  description = "IP pubblico della VM secondaria GCP"
   type        = string
-  default     = "custom ip - network" //mantengo default per evitare errori
 }
 
 variable "db_backup_window" {
@@ -70,7 +69,8 @@ variable "db_backup_window" {
   type        = string  
 }
 
-variable "environment" {
-  description = "Ambiente di deploy (es. dev, staging, prod)"
-  type        = string
+variable "custom_tags" {
+  description = "Tag personalizzati da applicare al DB"
+  type        = map(string)
 }
+

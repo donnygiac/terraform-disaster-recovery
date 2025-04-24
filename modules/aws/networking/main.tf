@@ -4,11 +4,12 @@ resource "aws_vpc" "this" {
   enable_dns_support   = true
   enable_dns_hostnames = true
 
-  tags = {
-    name = "${var.name}-vpc"
-    environment = var.environment
-    managed_by = "terraform"
-  }
+  tags = merge(
+    {
+      name = "${var.name}-vpc"
+    },
+    var.custom_tags
+  )
 }
 
 # Subnet pubblica (singola)
@@ -18,33 +19,36 @@ resource "aws_subnet" "public" {
   availability_zone       = data.aws_availability_zones.available.names[0]
   map_public_ip_on_launch = true
 
-  tags = {
-    name = "${var.name}-public-subnet"
-    environment = var.environment
-    managed_by = "terraform"
-  }
+  tags = merge(
+    {
+      name = "${var.name}-public-subnet"
+    },
+    var.custom_tags
+  )
 }
 
 # Internet Gateway
 resource "aws_internet_gateway" "this" {
   vpc_id = aws_vpc.this.id
 
-  tags = {
-    name = "${var.name}-igw"
-    environment = var.environment
-    managed_by = "terraform"
-  }
+  tags = merge(
+    {
+      name = "${var.name}-igw"
+    },
+    var.custom_tags
+  )
 }
 
 # Route Table pubblica
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.this.id
 
-  tags = {
-    name = "${var.name}-public-rt"
-    environment = var.environment
-    managed_by = "terraform"
-  }
+  tags = merge(
+    {
+      name = "${var.name}-public-rt"
+    },
+    var.custom_tags
+  )
 }
 
 # Route per l'accesso a Internet

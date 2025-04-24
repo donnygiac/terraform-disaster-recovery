@@ -32,13 +32,18 @@ variable "networking_primary_name" {
 }
 
 # modules/compute - AWS
-variable "compute_primary_ami" {
-  description = "AMI da usare per le istanze EC2 primarie"
+variable "compute_primary_name" {
+  description = "Prefisso per il nome delle risorse compute"
   type        = string
 }
 
 variable "compute_primary_instance_type" {
   description = "Tipo di istanza EC2 primaria"
+  type        = string
+}
+
+variable "compute_primary_ami" {
+  description = "AMI da usare per le istanze EC2 primarie"
   type        = string
 }
 
@@ -70,11 +75,6 @@ variable "compute_primary_egress_rules" {
     protocol    = string
     cidr_blocks = list(string)
   }))
-}
-
-variable "compute_primary_name" {
-  description = "Prefisso per il nome delle risorse compute"
-  type        = string
 }
 
 # modules/database - AWS
@@ -129,12 +129,6 @@ variable "database_primary_backup_window" {
   type        = string
 }
 
-# modules/load_balancer - AWS
-variable "lb_primary_certificate_arn" {
-  description = "ARN del certificato SSL per HTTPS"
-  type        = string
-}
-
 # providers.tf - GOOGLE
 variable "google_project" {
   description = "ID del progetto Google Cloud"
@@ -171,7 +165,6 @@ variable "networking_secondary_firewall_rules" {
     target_tags   = list(string)
   }))
 }
-
 
 # modules/google/compute - GOOGLE
 variable "compute_secondary_name" {
@@ -255,11 +248,6 @@ variable "database_secondary_backup_window" {
   type        = string
 }
 
-
-
-# modules/google/load_balancer - GOOGLE
-
-
 ## Route 53 - Failover
 variable "route53_zone_id" {
   description = "ID della Hosted Zone Route 53"
@@ -283,6 +271,12 @@ variable "route53_health_check_path" {
   type        = string
 }
 
+variable "route53_health_check_port" {
+  description = "Porta su cui effettuare l'health check"
+  type        = number
+  default     = 443
+}
+
 variable "route53_health_check_type" {
   description = "Tipo di check (es. HTTP, HTTPS)"
   type        = string
@@ -303,7 +297,8 @@ variable "route53_evaluate_target_health" {
   type        = bool
 }
 
-variable "route53_secondary_ttl" {
+variable "route53_ttl" {
   description = "TTL del record secondario"
   type        = number
+  default     = 60
 }

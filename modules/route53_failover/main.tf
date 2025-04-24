@@ -1,15 +1,19 @@
 resource "aws_route53_health_check" "primary_health" {
-  fqdn              = var.primary_fqdn
+  ip_address        = var.primary_ip
+  port              = var.health_check_port
   type              = var.health_check_type
   resource_path     = var.health_check_path
   failure_threshold = var.health_check_failure_threshold
   request_interval  = var.health_check_interval
 
-  tags = {
-    name        = "route53-primary-health"
-    environment = var.environment
-    managed_by  = "terraform"
-  }
+
+  tags = merge(
+    {
+      name = "route53-primary-health"
+    },
+    var.custom_tags
+  )
+
 }
 
 resource "aws_route53_record" "primary" {
@@ -18,12 +22,8 @@ resource "aws_route53_record" "primary" {
   type    = "A"
 
   set_identifier = "primary"
-
-  alias {
-    name                   = var.primary_elb_dns
-    zone_id                = var.primary_elb_zone_id
-    evaluate_target_health = var.evaluate_target_health
-  }
+  ttl            = var.ttl
+  records        = [var.primary_ip]
 
   health_check_id = aws_route53_health_check.primary_health.id
 
@@ -38,9 +38,8 @@ resource "aws_route53_record" "secondary" {
   type    = "A"
 
   set_identifier = "secondary"
-
-  ttl     = var.secondary_ttl
-  records = [var.secondary_ip]
+  ttl            = var.ttl
+  records        = [var.secondary_ip]
 
   failover_routing_policy {
     type = "SECONDARY"

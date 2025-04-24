@@ -44,7 +44,7 @@ variable "subnetwork" {
   type        = string
 }
 
-variable "environment" {
-  description = "Ambiente di deploy (es. production, staging)"
-  type        = string
+variable "custom_tags" {
+  description = "Tag personalizzati per l'istanza"
+  type        = map(string)
 }

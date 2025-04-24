@@ -1,21 +1,22 @@
 # Istanze EC2
 resource "aws_instance" "app" {
-  ami           = var.app_ami
-  instance_type = var.instance_type
-  subnet_id     = var.subnet_ids[0]
+  ami                    = var.app_ami
+  instance_type          = var.instance_type
+  subnet_id              = var.subnet_ids[0]
   vpc_security_group_ids = [aws_security_group.app_sg.id]
 
   root_block_device {
-    volume_size = var.volume_size
-    volume_type = var.volume_type
+    volume_size           = var.volume_size
+    volume_type           = var.volume_type
     delete_on_termination = true
   }
 
-  tags = {
-    name = "${var.name}-app"
-    environment = var.environment
-    managed_by = "terraform"
-  }
+  tags = merge(
+    {
+      name = "${var.name}-app"
+    },
+    var.custom_tags
+  )
 }
 
 # Security Group per EC2
@@ -42,10 +43,11 @@ resource "aws_security_group" "app_sg" {
     }
   }
 
-  tags = {
-    name = "${var.name}-sg"
-    environment = var.environment
-    managed_by = "terraform"
-  }
+  tags = merge(
+    {
+      name = "${var.name}-sg"
+    },
+    var.custom_tags
+  )
 }
 

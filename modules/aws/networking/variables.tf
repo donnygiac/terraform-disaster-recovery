@@ -6,10 +6,9 @@ variable "vpc_cidr" {
 variable "name" {
   description = "Prefisso per il nome delle risorse di rete"
   type        = string
-  default     = "primary"
 }
 
-variable "environment" {
-  description = "Ambiente di deploy (es. dev, prod)"
-  type        = string
+variable "custom_tags" {
+  description = "Tags personalizzati da applicare alle risorse"
+  type        = map(string)
 }

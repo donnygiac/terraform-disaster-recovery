@@ -1,13 +1,40 @@
+# Istanza RDS
+resource "aws_db_instance" "this" {
+  identifier             = var.db_identifier
+  engine                 = var.db_engine
+  instance_class         = var.db_instance_class
+  allocated_storage      = var.db_storage_gb
+  db_name                = var.db_name
+  username               = var.db_username
+  password               = var.db_password
+  db_subnet_group_name   = aws_db_subnet_group.this.name
+  vpc_security_group_ids = [aws_security_group.rds_sg.id]
+  skip_final_snapshot    = true
+
+  # Backup config
+  backup_retention_period = var.db_backup_retention
+  backup_window           = var.db_backup_window
+
+
+  tags = merge(
+    {
+      name = "${var.name}-rds"
+    },
+    var.custom_tags
+  )
+}
+
 # Gruppo di subnet per RDS
 resource "aws_db_subnet_group" "this" {
   name       = "${var.name}-subnet-group"
   subnet_ids = var.subnet_ids
 
-  tags = {
-    name = "${var.name}-subnet-group"
-    environment = var.environment
-    managed_by = "terraform"
-  }
+  tags = merge(
+    {
+      name = "${var.name}-subnet-group"
+    },
+    var.custom_tags
+  )
 }
 
 # Security Group per RDS
@@ -40,33 +67,10 @@ resource "aws_security_group" "rds_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = {
-    name = "${var.name}-rds-sg"
-    environment = var.environment
-    managed_by = "terraform"
-  }
-}
-
-# Istanza RDS
-resource "aws_db_instance" "this" {
-  identifier             = var.db_identifier
-  engine                 = var.db_engine
-  instance_class         = var.db_instance_class
-  allocated_storage      = var.db_storage_gb
-  db_name                = var.db_name
-  username               = var.db_username
-  password               = var.db_password
-  db_subnet_group_name   = aws_db_subnet_group.this.name
-  vpc_security_group_ids = [aws_security_group.rds_sg.id]
-  skip_final_snapshot    = true
-
-  # Backup config
-  backup_retention_period = var.db_backup_retention
-  backup_window           = var.db_backup_window
-
-  tags = {
-    name = "${var.name}-rds"
-    environment = var.environment
-    managed_by = "terraform"
-  }
+  tags = merge(
+    {
+      name = "${var.name}-rds-sg"
+    },
+    var.custom_tags
+  )
 }

@@ -22,9 +22,10 @@ resource "google_compute_instance" "app" {
 
   tags = ["${var.name}-app"]
 
-  labels = {
-    name        = "${var.name}-app"
-    environment = var.environment
-    managed_by  = "terraform"
-  }
+  labels = merge(
+    {
+      name = "${var.name}-app"
+    },
+    var.custom_tags
+  )
 }

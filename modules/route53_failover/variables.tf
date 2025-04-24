@@ -8,41 +8,31 @@ variable "record_name" {
   type        = string
 }
 
-variable "environment" {
-  description = "Ambiente di deploy (es. dev, staging, prod)"
+# PRIMARY VM (AWS)
+variable "primary_ip" {
+  description = "IP pubblico della VM primaria (AWS)"
   type        = string
 }
 
-# PRIMARY (AWS)
-variable "primary_fqdn" {
-  description = "FQDN per il controllo di health check (es. app.primary.miosito.com)"
-  type        = string
-}
-
-variable "primary_elb_dns" {
-  description = "DNS del load balancer primario (AWS)"
-  type        = string
-}
-
-variable "primary_elb_zone_id" {
-  description = "Hosted zone ID del load balancer primario"
-  type        = string
-}
-
-# SECONDARY (GCP)
+# SECONDARY VM (GCP)
 variable "secondary_ip" {
-  description = "IP pubblico dell'infrastruttura secondaria (GCP)"
+  description = "IP pubblico della VM secondaria (GCP)"
   type        = string
 }
 
 # Health Check config
-variable "health_check_path" {
-  description = "Path usato per l’health check"
+variable "health_check_type" {
+  description = "Tipo di health check (es. HTTP, HTTPS)"
   type        = string
 }
 
-variable "health_check_type" {
-  description = "Tipo di health check (es. HTTP, HTTPS)"
+variable "health_check_port" {
+  description = "Porta su cui effettuare l'health check"
+  type        = number
+}
+
+variable "health_check_path" {
+  description = "Path usato per l’health check"
   type        = string
 }
 
@@ -56,16 +46,12 @@ variable "health_check_failure_threshold" {
   type        = number
 }
 
-variable "evaluate_target_health" {
-  description = "Se true, Route53 valuta la salute del target ELB"
-  type        = bool
-  default     = true
-}
-
-# Record SECONDARY
-variable "secondary_ttl" {
-  description = "TTL del record DNS secondario"
+variable "ttl" {
+  description = "TTL del record DNS primario e secondario"
   type        = number
-  default     = 60
 }
 
+variable "custom_tags" {
+  description = "Tag personalizzati da applicare alle risorse"
+  type        = map(string)
+}
