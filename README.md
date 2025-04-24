@@ -100,9 +100,22 @@ infracost breakdown --config-file infracost.yml --format json --out-file infraco
 - `infracost.yml` → configurazione dei moduli da analizzare con Infracost
 - `outputs.tf` → mostra i riferimenti utili a risorse chiave (IP, DNS, ecc.)
 
+## Variabili Principali
 
-# todo
+- **`route53_health_check_type`**: `"HTTPS"`  
+  Tipo di health check eseguito. Supporta: HTTP, HTTPS, TCP.
 
-aws acm request-certificate \
-  --domain-name example.com \
-  --validation-method DNS
+- **`route53_health_check_port`**: `443`  
+  Porta sulla quale viene effettuato il controllo di salute.
+
+- **`route53_health_check_path`**: `"/"`  
+  Percorso interrogato in caso di check HTTP/HTTPS. Ignorato per TCP.
+
+- **`route53_health_check_interval`**: `30`  
+  Frequenza (in secondi) con cui Route 53 effettua il controllo.
+
+- **`route53_health_check_failure_threshold`**: `3`  
+  Numero di fallimenti consecutivi prima di considerare l'istanza "down".
+
+- **`route53_ttl`**: `60`  
+  TTL (Time To Live) per i record DNS primario e secondario.

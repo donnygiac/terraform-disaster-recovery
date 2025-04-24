@@ -146,7 +146,7 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
         </li>
         <li>
           <span class="label">Time generated:</span>
-          <span class="value">2025-04-22 18:07:23 CEST</span>
+          <span class="value">2025-04-24 20:37:50 CEST</span>
         </li>
       </ul>
     </div>
@@ -199,6 +199,40 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
   
 
   </tr>
+  
+    <tr class="tags">
+      <td class="name">
+        
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+        <span class="label">Tags:</span>
+        <span>environment=production, managed_by=terraform, name=secondary-db-name-db, project=example</span>
+      </td>
+      
+  
+    <td class="monthly-quantity"></td>
+  
+  
+    <td class="unit"></td>
+  
+  
+  
+  
+    <td class="monthly-cost"></td>
+  
+
+    </tr>
   
   
   
@@ -340,8 +374,17 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
           
           
         
+          
+          
+        
+          
+          
+        
+          
+          
+        
         <span class="label">Tags:</span>
-        <span>environment=production</span>
+        <span>environment=production, managed_by=terraform, name=secondary-vm-name-app, project=example</span>
       </td>
       
   
@@ -439,8 +482,17 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
           
           
         
+          
+          
+        
+          
+          
+        
+          
+          
+        
         <span class="label">Tags:</span>
-        <span>Name=primary-db-name-rds</span>
+        <span>environment=production, managed_by=terraform, name=primary-db-name-rds, project=example</span>
       </td>
       
   
@@ -551,8 +603,17 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
           
           
         
+          
+          
+        
+          
+          
+        
+          
+          
+        
         <span class="label">Tags:</span>
-        <span>Name=primary-vm-name-app</span>
+        <span>environment=production, managed_by=terraform, name=primary-vm-name-app, project=example</span>
       </td>
       
   
@@ -654,7 +715,7 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
     <td class="name">
       
       
-      module.load_balancer_primary.aws_lb.this
+      module.route53_failover.aws_route53_health_check.primary_health
     </td>
     
   
@@ -681,8 +742,14 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
           
           
         
+          
+          
+        
+          
+          
+        
         <span class="label">Tags:</span>
-        <span>Environment=production, ManagedBy=Terraform</span>
+        <span>environment=production, managed_by=terraform, name=route53-primary-health, project=example</span>
       </td>
       
   
@@ -698,198 +765,6 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
   
 
     </tr>
-  
-  
-  
-    
-  <tr class="cost-component">
-    <td class="name">
-      
-      <span class="arrow">&#8627;</span>
-      Application load balancer
-    </td>
-    
-      
-        <td class="monthly-quantity">730</td>
-      
-      
-        <td class="unit">hours</td>
-      
-      
-      
-      
-        <td class="monthly-cost">$16.43</td>
-      
-    
-  </tr>
-
-  
-    
-  <tr class="cost-component">
-    <td class="name">
-      
-      <span class="arrow">&#8627;</span>
-      Load balancer capacity units
-    </td>
-    
-      <td colspan="3" class="usage-cost">Cost depends on usage: $5.84 per LCU</td>
-    
-  </tr>
-
-  
-  
-
-      
-        
-  
-  <tr class="resource top-level">
-    <td class="name">
-      
-      
-      module.load_balancer_secondary.google_compute_global_forwarding_rule.http
-    </td>
-    
-  
-    <td class="monthly-quantity"></td>
-  
-  
-    <td class="unit"></td>
-  
-  
-  
-  
-    <td class="monthly-cost"></td>
-  
-
-  </tr>
-  
-  
-  
-    
-  <tr class="cost-component">
-    <td class="name">
-      
-      <span class="arrow">&#8627;</span>
-      Forwarding rules
-    </td>
-    
-      
-        <td class="monthly-quantity">730</td>
-      
-      
-        <td class="unit">hours</td>
-      
-      
-      
-      
-        <td class="monthly-cost">$7.30</td>
-      
-    
-  </tr>
-
-  
-    
-  <tr class="cost-component">
-    <td class="name">
-      
-      <span class="arrow">&#8627;</span>
-      Ingress data
-    </td>
-    
-      <td colspan="3" class="usage-cost">Cost depends on usage: $0.008 per GB</td>
-    
-  </tr>
-
-  
-  
-
-      
-        
-  
-  <tr class="resource top-level">
-    <td class="name">
-      
-      
-      module.load_balancer_secondary.google_compute_global_forwarding_rule.https
-    </td>
-    
-  
-    <td class="monthly-quantity"></td>
-  
-  
-    <td class="unit"></td>
-  
-  
-  
-  
-    <td class="monthly-cost"></td>
-  
-
-  </tr>
-  
-  
-  
-    
-  <tr class="cost-component">
-    <td class="name">
-      
-      <span class="arrow">&#8627;</span>
-      Forwarding rules
-    </td>
-    
-      
-        <td class="monthly-quantity">730</td>
-      
-      
-        <td class="unit">hours</td>
-      
-      
-      
-      
-        <td class="monthly-cost">$7.30</td>
-      
-    
-  </tr>
-
-  
-    
-  <tr class="cost-component">
-    <td class="name">
-      
-      <span class="arrow">&#8627;</span>
-      Ingress data
-    </td>
-    
-      <td colspan="3" class="usage-cost">Cost depends on usage: $0.008 per GB</td>
-    
-  </tr>
-
-  
-  
-
-      
-        
-  
-  <tr class="resource top-level">
-    <td class="name">
-      
-      
-      module.route53_failover.aws_route53_health_check.primary_health
-    </td>
-    
-  
-    <td class="monthly-quantity"></td>
-  
-  
-    <td class="unit"></td>
-  
-  
-  
-  
-    <td class="monthly-cost"></td>
-  
-
-  </tr>
   
   
   
@@ -916,110 +791,25 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
   </tr>
 
   
-  
-
-      
-        
-  
-  <tr class="resource top-level">
-    <td class="name">
-      
-      
-      module.load_balancer_secondary.google_compute_target_http_proxy.http
-    </td>
-    
-  
-    <td class="monthly-quantity"></td>
-  
-  
-    <td class="unit"></td>
-  
-  
-  
-  
-    <td class="monthly-cost"></td>
-  
-
-  </tr>
-  
-  
-  
     
   <tr class="cost-component">
     <td class="name">
       
       <span class="arrow">&#8627;</span>
-      Proxy instance
+      Optional features
     </td>
     
-      <td colspan="3" class="usage-cost">Cost depends on usage: $0.025 per hours</td>
-    
-  </tr>
-
-  
-    
-  <tr class="cost-component">
-    <td class="name">
       
-      <span class="arrow">&#8627;</span>
-      Data processed
-    </td>
-    
-      <td colspan="3" class="usage-cost">Cost depends on usage: $0.008 per GB</td>
-    
-  </tr>
-
-  
-  
-
-      
-        
-  
-  <tr class="resource top-level">
-    <td class="name">
+        <td class="monthly-quantity">1</td>
       
       
-      module.load_balancer_secondary.google_compute_target_https_proxy.https
-    </td>
-    
-  
-    <td class="monthly-quantity"></td>
-  
-  
-    <td class="unit"></td>
-  
-  
-  
-  
-    <td class="monthly-cost"></td>
-  
-
-  </tr>
-  
-  
-  
-    
-  <tr class="cost-component">
-    <td class="name">
+        <td class="unit">months</td>
       
-      <span class="arrow">&#8627;</span>
-      Proxy instance
-    </td>
-    
-      <td colspan="3" class="usage-cost">Cost depends on usage: $0.025 per hours</td>
-    
-  </tr>
-
-  
-    
-  <tr class="cost-component">
-    <td class="name">
       
-      <span class="arrow">&#8627;</span>
-      Data processed
-    </td>
-    
-      <td colspan="3" class="usage-cost">Cost depends on usage: $0.008 per GB</td>
+      
+      
+        <td class="monthly-cost">$1.00</td>
+      
     
   </tr>
 
@@ -1163,7 +953,7 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
       
       <tr class="total">
         <td class="name" colspan="3">Project total</td>
-        <td class="monthly-cost">$262.68</td>
+        <td class="monthly-cost">$232.66</td>
       </tr>
     </tbody>
   </table>
@@ -1174,13 +964,13 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
       <tbody>
         <tr class="total">
           <td class="name" colspan="3">Overall total</td>
-          <td class="monthly-cost">$262.68</td>
+          <td class="monthly-cost">$232.66</td>
         </tr>
       </tbody>
     </table>
 
     <div class="warnings">
-      <p>37 cloud resources were detected:<br />∙ 12 were estimated<br />∙ 25 were free</p>
+      <p>23 cloud resources were detected:<br />∙ 7 were estimated<br />∙ 16 were free</p>
     </div>
   </body>
 </html>

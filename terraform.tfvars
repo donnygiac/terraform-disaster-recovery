@@ -114,13 +114,4 @@ database_secondary_backup_window     = "03:00" # (formato hh:mm)
 # FAILOVER SETTINGS
 ## modules/route53_failover - Route53 Failover
 ### Route53 settings
-route53_zone_id      = "Z3P5QSUBK4POTI"          # Deve esistere in AWS
-route53_record_name  = "app.example.com"         # Deve esistere in AWS
-route53_primary_fqdn = "app.primary.example.com" # Deve esistere in AWS
-### Health check settings
-route53_health_check_path              = "/"
-route53_health_check_type              = "HTTP"
-route53_health_check_interval          = 30
-route53_health_check_failure_threshold = 3
-route53_evaluate_target_health         = true
-route53_secondary_ttl                  = 60
+route53_zone_id = "Z3P5QSUBK4POTI" # Deve esistere in AWS        # Deve esistere in AWS

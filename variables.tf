@@ -254,21 +254,11 @@ variable "route53_zone_id" {
   type        = string
 }
 
-variable "route53_record_name" {
-  description = "Nome del record DNS gestito (es. app.miosito.com)"
-  type        = string
-}
-
-# PRIMARY (AWS)
-variable "route53_primary_fqdn" {
-  description = "FQDN del servizio primario per l'health check"
-  type        = string
-}
-
 # Health check config
 variable "route53_health_check_path" {
   description = "Percorso da interrogare per l'health check"
   type        = string
+  default     = "/"
 }
 
 variable "route53_health_check_port" {
@@ -280,25 +270,23 @@ variable "route53_health_check_port" {
 variable "route53_health_check_type" {
   description = "Tipo di check (es. HTTP, HTTPS)"
   type        = string
+  default     = "HTTPS"
 }
 
 variable "route53_health_check_interval" {
   description = "Intervallo dei check (secondi)"
   type        = number
+  default     = 30
 }
 
 variable "route53_health_check_failure_threshold" {
   description = "Numero di fallimenti prima di considerare down"
   type        = number
-}
-
-variable "route53_evaluate_target_health" {
-  description = "Valuta lo stato di salute del target ELB"
-  type        = bool
+  default     = 3
 }
 
 variable "route53_ttl" {
-  description = "TTL del record secondario"
+  description = "TTL primario e secondario"
   type        = number
   default     = 60
 }
