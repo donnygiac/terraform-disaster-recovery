@@ -12,6 +12,10 @@ module "networking_primary" {
   name        = var.networking_primary_name // Nome del modulo
   vpc_cidr    = var.vpc_cidr_primary        // CIDR della VPC
   custom_tags = local.custom_tags           // Tag personalizzati
+
+  providers = {
+    aws = aws.primary
+  }
 }
 
 module "compute_primary" {
@@ -26,6 +30,10 @@ module "compute_primary" {
   ingress_rules = var.compute_primary_ingress_rules          // Regole di ingresso per il security group (es. HTTP, HTTPS)
   egress_rules  = var.compute_primary_egress_rules           // Regole di uscita per il security group (es. HTTP, HTTPS)
   custom_tags   = local.custom_tags                          // Tag personalizzati
+
+  providers = {
+    aws = aws.primary
+  }
 }
 
 module "database_primary" {
@@ -45,6 +53,10 @@ module "database_primary" {
   db_backup_retention = var.database_primary_backup_retention      // 0 per disattivare i backup
   db_backup_window    = var.database_primary_backup_window         // Finestra di backup in formato HH:MM-HH:MM (es. 00:00-02:00)
   custom_tags         = local.custom_tags                          // Tag personalizzati
+
+  providers = {
+    aws = aws.primary
+  }
 }
 
 # Google Cloud Infrastructure
@@ -54,6 +66,10 @@ module "networking_secondary" {
   subnet_cidr    = var.subnet_cidr_secondary               // CIDR della subnet secondaria
   region         = var.google_region                       // Regione in cui creare la subnet
   firewall_rules = var.networking_secondary_firewall_rules // Regole firewall da applicare
+
+  providers = {
+    google = google.secondary
+  }
 }
 
 module "compute_secondary" {
@@ -68,6 +84,10 @@ module "compute_secondary" {
   disk_size    = var.compute_secondary_disk_size             // Dimensione del disco in GB (es. 10)
   disk_type    = var.compute_secondary_disk_type             // Tipo di disco (es. pd-standard, pd-ssd)
   custom_tags  = local.custom_tags                           // Tag personalizzati
+
+  providers = {
+    google = google.secondary
+  }
 }
 
 module "database_secondary" {
@@ -87,6 +107,10 @@ module "database_secondary" {
   db_password       = var.database_secondary_password          // Password del database
   db_backup_window  = var.database_secondary_backup_window     // Finestra di backup in formato HH:MM-HH:MM (es. 00:00-02:00)
   custom_tags       = local.custom_tags                        // Tag personalizzati
+
+  providers = {
+    google = google.secondary
+  }
 }
 
 

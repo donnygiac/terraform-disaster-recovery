@@ -48,7 +48,7 @@ networking_secondary_firewall_rules = [
 compute_primary_name          = "primary-vm-name"
 compute_primary_instance_type = "t3.medium"
 compute_primary_ami           = "ami-09454961f90c7c88c"
-compute_primary_volume_size   = 20
+compute_primary_volume_size   = 60
 compute_primary_volume_type   = "gp3"
 compute_primary_ingress_rules = [
   {
@@ -83,7 +83,7 @@ compute_primary_egress_rules = [
 compute_secondary_name         = "secondary-vm-name"
 compute_secondary_machine_type = "e2-standard-2"
 compute_secondary_image        = "projects/debian-cloud/global/images/family/debian-12"
-compute_secondary_disk_size    = 20
+compute_secondary_disk_size    = 60
 compute_secondary_disk_type    = "pd-balanced"
 
 # DATABASE SETTINGS
