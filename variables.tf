@@ -1,4 +1,4 @@
-# Genreric variables for AWS and GCP
+# Variabili generiche per AWS e GCP
 variable "database_custom_static_ip" {
   description = "IP pubblico (CIDR /32) dell'ufficio per accesso DB"
   type        = string
