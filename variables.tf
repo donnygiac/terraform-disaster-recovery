@@ -31,6 +31,11 @@ variable "networking_primary_name" {
   type        = string
 }
 
+variable "aws_zone" {
+  description = "Regione AWS per l'ambiente primario"
+  type        = string
+}
+
 # modules/compute - AWS
 variable "compute_primary_name" {
   description = "Prefisso per il nome delle risorse compute"

@@ -3,7 +3,8 @@ domain_name               = "app.example.com"
 environment               = "production" # Ambiente di deploy (es. dev, prod)
 
 ## AWS
-aws_region = "us-west-1"
+aws_region = "eu-west-1"
+aws_zone   = "eu-west-1a"
 ## Google Cloud
 google_project = "my-real-gcp-project"
 google_region  = "europe-west1"
@@ -114,4 +115,4 @@ database_secondary_backup_window     = "03:00" # (formato hh:mm)
 # FAILOVER SETTINGS
 ## modules/route53_failover - Route53 Failover
 ### Route53 settings
-route53_zone_id = "Z3P5QSUBK4POTI" # Deve esistere in AWS        # Deve esistere in AWS
+route53_zone_id = "Z3P5QSUBK4POTI" # Deve esistere in AWS

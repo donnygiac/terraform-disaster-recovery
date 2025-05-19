@@ -1,25 +1,35 @@
-# 📘 Terraform Multi-Cloud DR Infrastructure - README
+# 📘 Terraform Multi-Cloud Infrastructure – Service Continuity con AWS e GCP
 
-Questo progetto utilizza Terraform per creare un'infrastruttura di Disaster Recovery (DR) distribuita su AWS (primario) e Google Cloud (secondario), con supporto per Load Balancer, Database, Storage, Networking e Failover DNS tramite Route53. 
+Questo progetto implementa un'infrastruttura multi-cloud orientata alla continuità del servizio (Service Continuity) utilizzando Terraform come motore di provisioning. L’ambiente prevede una configurazione attiva su AWS (primario) e una secondaria su Google Cloud Platform (GCP), con gestione del failover automatico tramite Route 53 e analisi dei costi tramite Infracost.
 
-## 📦 Contenuto del Progetto
+Non vengono utilizzati Load Balancer: le VM espongono direttamente i servizi HTTPS mediante certificati SSL generati localmente (es. Certbot).
 
-- Moduli AWS:
-  - Compute (EC2)
-  - Networking (VPC, Subnet, IGW)
-  - Database (RDS MySQL)
-  - Load Balancer (ALB)
-  - Storage (S3)
-- Moduli Google Cloud:
-  - Compute (GCE)
-  - Networking (VPC, Subnet)
-  - Database (Cloud SQL)
-  - Load Balancer (HTTP LB)
-  - Storage (GCS)
+## 📦 Struttura del Progetto
+
+- AWS (Provider primario):
+  - networking_primary: VPC, subnet pubbliche, internet gateway, route table
+  - compute_primary: EC2 con IP pubblico e security group
+  - database_primary: RDS MySQL con security group dedicato
+- Google Cloud (Provider secondario):
+  - networking_secondary: VPC, subnet, firewall rules
+  - compute_secondary: VM Compute Engine con IP pubblico e dischi personalizzati
+  - database_secondary: Cloud SQL con MySQL, accesso da IP statico + VM
 - Failover DNS:
-  - Route53 configurato con health check e record primario/secondario
+  - route53_failover: gestione del failover tra AWS e GCP tramite record A con routing policy "failover" e health check attivo su AWS
 - Analisi dei costi:
-  - Infracost
+  - Integrazione completa con Infracost per il calcolo delle stime di spesa
+
+---
+
+## 📎 File Principali
+
+- `main.tf` Orchestratore principale che richiama tutti i moduli
+- `providers.tf` Configurazione dei provider AWS e GCP con alias
+- `terraform.tfvars` Valori di input delle variabili legati al costo (usato da Infracost)
+- `variables.tf` Variabili condivise tra i moduli
+- `infracost.yml` File di configurazione per l'analisi economica
+- `outputs.tf` Output chiave come IP pubblici, nome del dominio, DNS configurati
+- `modules/` Contiene i moduli riutilizzabili per AWS, GCP e Route 53
 
 ---
 
@@ -63,7 +73,9 @@ Rimuove tutte le risorse definite nel progetto.
 
 ---
 
-## 💰 Comandi Infracost
+## 💰 Analisi dei Costi con Infracost
+
+Il file terraform.tfvars contiene solo variabili che impattano economicamente sul piano (es. tipo istanza, dimensione dischi, classe database). Il file infracost.yml specifica i percorsi dei moduli da analizzare.
 
 ### 1. Breakdown dei Costi
 ```bash
@@ -83,39 +95,16 @@ infracost breakdown --config-file infracost.yml --format json --out-file infraco
 
 ---
 
-## 🧩 Best Practice
+## ⚙️ Funzionamento del Failover DNS
 
-- Eseguire `terraform validate` ad ogni modifica.
-- Utilizzare `terraform plan` prima di ogni `apply`.
-- Eseguire `infracost` prima di approvare modifiche per capire l'impatto economico.
-- Versionare `terraform.lock.hcl` per garantire consistenza tra ambienti.
+- **Route 53 è configurato con:**
+  - Record A primario: punta all'IP pubblico di AWS
+  - Record A secondario: punta all'IP pubblico GCP
 
----
+- **Health Check AWS:**
+  - Tipo: HTTPS
+  - Path: `/`
+  - Porta: `443`
+  - Trigger: ogni 30s, failover dopo 3 tentativi falliti
 
-## 📎 File Principali
-
-- `main.tf` → invoca tutti i moduli (AWS e GCP)
-- `providers.tf` → definisce provider AWS e Google
-- `variables.tf` → variabili condivise
-- `infracost.yml` → configurazione dei moduli da analizzare con Infracost
-- `outputs.tf` → mostra i riferimenti utili a risorse chiave (IP, DNS, ecc.)
-
-## Variabili Principali
-
-- **`route53_health_check_type`**: `"HTTPS"`  
-  Tipo di health check eseguito. Supporta: HTTP, HTTPS, TCP.
-
-- **`route53_health_check_port`**: `443`  
-  Porta sulla quale viene effettuato il controllo di salute.
-
-- **`route53_health_check_path`**: `"/"`  
-  Percorso interrogato in caso di check HTTP/HTTPS. Ignorato per TCP.
-
-- **`route53_health_check_interval`**: `30`  
-  Frequenza (in secondi) con cui Route 53 effettua il controllo.
-
-- **`route53_health_check_failure_threshold`**: `3`  
-  Numero di fallimenti consecutivi prima di considerare l'istanza "down".
-
-- **`route53_ttl`**: `60`  
-  TTL (Time To Live) per i record DNS primario e secondario.
+- **Se il controllo fallisce, il traffico viene reindirizzato al secondario (GCP) automaticamente**

@@ -16,7 +16,7 @@ resource "aws_vpc" "this" {
 resource "aws_subnet" "public" {
   vpc_id                  = aws_vpc.this.id
   cidr_block              = var.vpc_cidr
-  availability_zone       = data.aws_availability_zones.available.names[0]
+  availability_zone       = var.aws_zone
   map_public_ip_on_launch = true
 
   tags = merge(
@@ -65,4 +65,4 @@ resource "aws_route_table_association" "public" {
 }
 
 # Availability Zones (necessaria per prendere almeno una zona valida)
-data "aws_availability_zones" "available" {}
+# data "aws_availability_zones" "available" {}

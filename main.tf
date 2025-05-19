@@ -12,7 +12,7 @@ module "networking_primary" {
   name        = var.networking_primary_name // Nome del modulo
   vpc_cidr    = var.vpc_cidr_primary        // CIDR della VPC
   custom_tags = local.custom_tags           // Tag personalizzati
-
+  aws_zone    = var.aws_zone                // Zona AWS in cui creare la VPC
   providers = {
     aws = aws.primary
   }
@@ -38,21 +38,21 @@ module "compute_primary" {
 
 module "database_primary" {
   source              = "./modules/aws/database"
-  name                = var.database_primary_name                  //Prefisso generico usato per nominare risorse Terraform
-  vpc_id              = module.networking_primary.vpc_id           // ID della VPC
-  subnet_id           = module.networking_primary.public_subnet_id // ID delle subnet pubbliche
-  app_sg_id           = module.compute_primary.app_sg_id           // ID del security group delle istanze EC2
-  custom_static_ip    = var.database_custom_static_ip              // IP statico custom
-  db_identifier       = var.database_primary_identifier            // Nome identificativo del database (es. mydb)
-  db_engine           = var.database_primary_version               // Tipo di database (es. mysql, postgres, etc.)
-  db_instance_class   = var.database_primary_tier                  // Tipo di istanza del database (es. db.t3.micro)
-  db_storage_gb       = var.database_primary_storage               // Dimensione del disco in GB
-  db_name             = var.database_primary_db_name               // Nome reale del database 
-  db_username         = var.database_primary_username              // Nome utente del database
-  db_password         = var.database_primary_password              // Password del database
-  db_backup_retention = var.database_primary_backup_retention      // 0 per disattivare i backup
-  db_backup_window    = var.database_primary_backup_window         // Finestra di backup in formato HH:MM-HH:MM (es. 00:00-02:00)
-  custom_tags         = local.custom_tags                          // Tag personalizzati
+  name                = var.database_primary_name                    //Prefisso generico usato per nominare risorse Terraform
+  vpc_id              = module.networking_primary.vpc_id             // ID della VPC
+  subnet_id           = [module.networking_primary.public_subnet_id] // ID delle subnet pubbliche
+  app_sg_id           = module.compute_primary.app_sg_id             // ID del security group delle istanze EC2
+  custom_static_ip    = var.database_custom_static_ip                // IP statico custom
+  db_identifier       = var.database_primary_identifier              // Nome identificativo del database (es. mydb)
+  db_engine           = var.database_primary_version                 // Tipo di database (es. mysql, postgres, etc.)
+  db_instance_class   = var.database_primary_tier                    // Tipo di istanza del database (es. db.t3.micro)
+  db_storage_gb       = var.database_primary_storage                 // Dimensione del disco in GB
+  db_name             = var.database_primary_db_name                 // Nome reale del database 
+  db_username         = var.database_primary_username                // Nome utente del database
+  db_password         = var.database_primary_password                // Password del database
+  db_backup_retention = var.database_primary_backup_retention        // 0 per disattivare i backup
+  db_backup_window    = var.database_primary_backup_window           // Finestra di backup in formato HH:MM-HH:MM (es. 00:00-02:00)
+  custom_tags         = local.custom_tags                            // Tag personalizzati
 
   providers = {
     aws = aws.primary
