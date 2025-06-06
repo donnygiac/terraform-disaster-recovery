@@ -146,7 +146,7 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
         </li>
         <li>
           <span class="label">Time generated:</span>
-          <span class="value">2025-04-26 14:49:12 CEST</span>
+          <span class="value">2025-05-30 23:19:57 CEST</span>
         </li>
       </ul>
     </div>
@@ -176,6 +176,114 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
 
     </thead>
     <tbody>
+      
+        
+  
+  <tr class="resource top-level">
+    <td class="name">
+      
+      
+      module.compute_secondary.google_compute_instance.app
+    </td>
+    
+  
+    <td class="monthly-quantity"></td>
+  
+  
+    <td class="unit"></td>
+  
+  
+  
+  
+    <td class="monthly-cost"></td>
+  
+
+  </tr>
+  
+    <tr class="tags">
+      <td class="name">
+        
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+        <span class="label">Tags:</span>
+        <span>environment=production, managed_by=terraform, name=secondary-vm-name-app, project=example</span>
+      </td>
+      
+  
+    <td class="monthly-quantity"></td>
+  
+  
+    <td class="unit"></td>
+  
+  
+  
+  
+    <td class="monthly-cost"></td>
+  
+
+    </tr>
+  
+  
+  
+    
+  <tr class="cost-component">
+    <td class="name">
+      
+      <span class="arrow">&#8627;</span>
+      Instance usage (Linux/UNIX, on-demand, e2-standard-2)
+    </td>
+    
+      
+        <td class="monthly-quantity">730</td>
+      
+      
+        <td class="unit">hours</td>
+      
+      
+      
+      
+        <td class="monthly-cost">$53.81</td>
+      
+    
+  </tr>
+
+  
+    
+  <tr class="cost-component">
+    <td class="name">
+      
+      <span class="arrow">&#8627;</span>
+      Balanced provisioned storage (pd-balanced)
+    </td>
+    
+      
+        <td class="monthly-quantity">1,000</td>
+      
+      
+        <td class="unit">GB</td>
+      
+      
+      
+      
+        <td class="monthly-cost">$100.00</td>
+      
+    
+  </tr>
+
+  
+  
+
       
         
   
@@ -291,7 +399,7 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
     </td>
     
       
-        <td class="monthly-quantity">20</td>
+        <td class="monthly-quantity">200</td>
       
       
         <td class="unit">GB</td>
@@ -299,7 +407,7 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
       
       
       
-        <td class="monthly-cost">$3.40</td>
+        <td class="monthly-cost">$34.00</td>
       
     
   </tr>
@@ -336,235 +444,6 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
       
       
         <td class="monthly-cost">$7.30</td>
-      
-    
-  </tr>
-
-  
-  
-
-      
-        
-  
-  <tr class="resource top-level">
-    <td class="name">
-      
-      
-      module.database_primary.aws_db_instance.this
-    </td>
-    
-  
-    <td class="monthly-quantity"></td>
-  
-  
-    <td class="unit"></td>
-  
-  
-  
-  
-    <td class="monthly-cost"></td>
-  
-
-  </tr>
-  
-    <tr class="tags">
-      <td class="name">
-        
-        
-          
-          
-        
-          
-          
-        
-          
-          
-        
-          
-          
-        
-        <span class="label">Tags:</span>
-        <span>environment=production, managed_by=terraform, name=primary-db-name-rds, project=example</span>
-      </td>
-      
-  
-    <td class="monthly-quantity"></td>
-  
-  
-    <td class="unit"></td>
-  
-  
-  
-  
-    <td class="monthly-cost"></td>
-  
-
-    </tr>
-  
-  
-  
-    
-  <tr class="cost-component">
-    <td class="name">
-      
-      <span class="arrow">&#8627;</span>
-      Database instance (on-demand, Single-AZ, db.t3.medium)
-    </td>
-    
-      
-        <td class="monthly-quantity">730</td>
-      
-      
-        <td class="unit">hours</td>
-      
-      
-      
-      
-        <td class="monthly-cost">$64.24</td>
-      
-    
-  </tr>
-
-  
-    
-  <tr class="cost-component">
-    <td class="name">
-      
-      <span class="arrow">&#8627;</span>
-      Storage (general purpose SSD, gp2)
-    </td>
-    
-      
-        <td class="monthly-quantity">20</td>
-      
-      
-        <td class="unit">GB</td>
-      
-      
-      
-      
-        <td class="monthly-cost">$2.76</td>
-      
-    
-  </tr>
-
-  
-    
-  <tr class="cost-component">
-    <td class="name">
-      
-      <span class="arrow">&#8627;</span>
-      Additional backup storage
-    </td>
-    
-      <td colspan="3" class="usage-cost">Cost depends on usage: $0.095 per GB</td>
-    
-  </tr>
-
-  
-  
-
-      
-        
-  
-  <tr class="resource top-level">
-    <td class="name">
-      
-      
-      module.compute_secondary.google_compute_instance.app
-    </td>
-    
-  
-    <td class="monthly-quantity"></td>
-  
-  
-    <td class="unit"></td>
-  
-  
-  
-  
-    <td class="monthly-cost"></td>
-  
-
-  </tr>
-  
-    <tr class="tags">
-      <td class="name">
-        
-        
-          
-          
-        
-          
-          
-        
-          
-          
-        
-          
-          
-        
-        <span class="label">Tags:</span>
-        <span>environment=production, managed_by=terraform, name=secondary-vm-name-app, project=example</span>
-      </td>
-      
-  
-    <td class="monthly-quantity"></td>
-  
-  
-    <td class="unit"></td>
-  
-  
-  
-  
-    <td class="monthly-cost"></td>
-  
-
-    </tr>
-  
-  
-  
-    
-  <tr class="cost-component">
-    <td class="name">
-      
-      <span class="arrow">&#8627;</span>
-      Instance usage (Linux/UNIX, on-demand, e2-standard-2)
-    </td>
-    
-      
-        <td class="monthly-quantity">730</td>
-      
-      
-        <td class="unit">hours</td>
-      
-      
-      
-      
-        <td class="monthly-cost">$53.81</td>
-      
-    
-  </tr>
-
-  
-    
-  <tr class="cost-component">
-    <td class="name">
-      
-      <span class="arrow">&#8627;</span>
-      Balanced provisioned storage (pd-balanced)
-    </td>
-    
-      
-        <td class="monthly-quantity">60</td>
-      
-      
-        <td class="unit">GB</td>
-      
-      
-      
-      
-        <td class="monthly-cost">$6.00</td>
       
     
   </tr>
@@ -649,7 +528,7 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
       
       
       
-        <td class="monthly-cost">$36.21</td>
+        <td class="monthly-cost">$33.29</td>
       
     
   </tr>
@@ -690,7 +569,7 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
     </td>
     
       
-        <td class="monthly-quantity">60</td>
+        <td class="monthly-quantity">1,000</td>
       
       
         <td class="unit">GB</td>
@@ -698,7 +577,7 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
       
       
       
-        <td class="monthly-cost">$5.76</td>
+        <td class="monthly-cost">$88.00</td>
       
     
   </tr>
@@ -706,6 +585,127 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
   
   
 
+  
+
+      
+        
+  
+  <tr class="resource top-level">
+    <td class="name">
+      
+      
+      module.database_primary.aws_db_instance.this
+    </td>
+    
+  
+    <td class="monthly-quantity"></td>
+  
+  
+    <td class="unit"></td>
+  
+  
+  
+  
+    <td class="monthly-cost"></td>
+  
+
+  </tr>
+  
+    <tr class="tags">
+      <td class="name">
+        
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+        <span class="label">Tags:</span>
+        <span>environment=production, managed_by=terraform, name=primary-db-name-rds, project=example</span>
+      </td>
+      
+  
+    <td class="monthly-quantity"></td>
+  
+  
+    <td class="unit"></td>
+  
+  
+  
+  
+    <td class="monthly-cost"></td>
+  
+
+    </tr>
+  
+  
+  
+    
+  <tr class="cost-component">
+    <td class="name">
+      
+      <span class="arrow">&#8627;</span>
+      Database instance (on-demand, Single-AZ, db.t3.medium)
+    </td>
+    
+      
+        <td class="monthly-quantity">730</td>
+      
+      
+        <td class="unit">hours</td>
+      
+      
+      
+      
+        <td class="monthly-cost">$52.56</td>
+      
+    
+  </tr>
+
+  
+    
+  <tr class="cost-component">
+    <td class="name">
+      
+      <span class="arrow">&#8627;</span>
+      Storage (general purpose SSD, gp2)
+    </td>
+    
+      
+        <td class="monthly-quantity">200</td>
+      
+      
+        <td class="unit">GB</td>
+      
+      
+      
+      
+        <td class="monthly-cost">$25.40</td>
+      
+    
+  </tr>
+
+  
+    
+  <tr class="cost-component">
+    <td class="name">
+      
+      <span class="arrow">&#8627;</span>
+      Additional backup storage
+    </td>
+    
+      <td colspan="3" class="usage-cost">Cost depends on usage: $0.095 per GB</td>
+    
+  </tr>
+
+  
   
 
       
@@ -953,7 +953,7 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
       
       <tr class="total">
         <td class="name" colspan="3">Project total</td>
-        <td class="monthly-cost">$261.72</td>
+        <td class="monthly-cost">$476.60</td>
       </tr>
     </tbody>
   </table>
@@ -964,7 +964,7 @@ iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAMAAABlApw1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7O
       <tbody>
         <tr class="total">
           <td class="name" colspan="3">Overall total</td>
-          <td class="monthly-cost">$261.72</td>
+          <td class="monthly-cost">$476.60</td>
         </tr>
       </tbody>
     </table>

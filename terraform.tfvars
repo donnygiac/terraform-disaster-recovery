@@ -49,7 +49,7 @@ networking_secondary_firewall_rules = [
 compute_primary_name          = "primary-vm-name"
 compute_primary_instance_type = "t3.medium"
 compute_primary_ami           = "ami-09454961f90c7c88c"
-compute_primary_volume_size   = 60
+compute_primary_volume_size   = 1000
 compute_primary_volume_type   = "gp3"
 compute_primary_ingress_rules = [
   {
@@ -84,7 +84,7 @@ compute_primary_egress_rules = [
 compute_secondary_name         = "secondary-vm-name"
 compute_secondary_machine_type = "e2-standard-2"
 compute_secondary_image        = "projects/debian-cloud/global/images/family/debian-12"
-compute_secondary_disk_size    = 60
+compute_secondary_disk_size    = 1000
 compute_secondary_disk_type    = "pd-balanced"
 
 # DATABASE SETTINGS
@@ -93,7 +93,7 @@ database_primary_name             = "primary-db-name"
 database_primary_identifier       = "primary-db-identifier"
 database_primary_version          = "mysql"
 database_primary_tier             = "db.t3.medium"
-database_primary_storage          = 20
+database_primary_storage          = 200
 database_primary_db_name          = "myappdb"
 database_primary_username         = "admin"
 database_primary_password         = "MyStr0ngPassw0rd!"
@@ -104,7 +104,7 @@ database_secondary_name              = "secondary-db-name"
 database_secondary_version           = "MYSQL_8_0"
 database_secondary_tier              = "db-custom-2-4096"
 database_secondary_availability_type = "ZONAL"
-database_secondary_storage           = 20
+database_secondary_storage           = 200
 database_secondary_disk_type         = "PD_SSD"
 database_secondary_backup            = true
 database_secondary_db_name           = "myappdb"
