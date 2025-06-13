@@ -103,7 +103,7 @@ infracost breakdown --config-file infracost.yml --format json --out-file infraco
 
 - **Health Check AWS:**
   - Tipo: HTTPS
-  - Path: `/`
+  - Path: `/healthcheck`
   - Porta: `443`
   - Trigger: ogni 30s, failover dopo 3 tentativi falliti
 
