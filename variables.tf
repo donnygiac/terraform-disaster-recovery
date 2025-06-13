@@ -263,7 +263,6 @@ variable "route53_zone_id" {
 variable "route53_health_check_path" {
   description = "Percorso da interrogare per l'health check"
   type        = string
-  default     = "/"
 }
 
 variable "route53_health_check_port" {

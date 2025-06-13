@@ -116,3 +116,4 @@ database_secondary_backup_window     = "03:00" # (formato hh:mm)
 ## modules/route53_failover - Route53 Failover
 ### Route53 settings
 route53_zone_id = "Z3P5QSUBK4POTI" # Deve esistere in AWS
+route53_health_check_path = "/healthcheck" # Percorso per il controllo (customizzabile)
