@@ -4,6 +4,21 @@ Questo progetto implementa un'infrastruttura multi-cloud orientata alla continui
 
 Non vengono utilizzati Load Balancer: le VM espongono direttamente i servizi HTTPS mediante certificati SSL generati localmente (es. Certbot).
 
+---
+
+## 🧪 Modalità Mock (Testing)
+
+⚠️ Attenzione: Il codice presente nel repository utilizza provider mock (`mock_access_key`, `mock_private_key`, ecc.) e progetti fittizi per consentire l’esecuzione dei comandi terraform plan e terraform validate senza effettivamente interagire con AWS o GCP.
+Questo approccio è stato scelto per rendere il progetto eseguibile anche senza credenziali reali.
+
+A fine guida è presente una sezione "🧭 Passaggio da ambiente di test a produzione” che spiega nel dettaglio:
+
+- come modificare il file `providers.tf` → `providers_prod.tf`;
+- cosa avere di default sulla propria macchina
+
+---
+
+
 ## 📦 Struttura del Progetto
 
 - AWS (Provider primario):
@@ -25,7 +40,7 @@ Non vengono utilizzati Load Balancer: le VM espongono direttamente i servizi HTT
 
 - `main.tf` Orchestratore principale che richiama tutti i moduli
 - `providers.tf` Configurazione dei provider AWS e GCP con alias
-- `terraform.tfvars` Valori di input delle variabili legati al costo (usato da Infracost)
+- `terraform.tfvars` Valori di input delle variabili legati al costo (usato da Infracost) ed alle personalizzazioni dell'infrastruttura
 - `variables.tf` Variabili condivise tra i moduli
 - `infracost.yml` File di configurazione per l'analisi economica
 - `outputs.tf` Output chiave come IP pubblici, nome del dominio, DNS configurati
@@ -108,3 +123,17 @@ infracost breakdown --config-file infracost.yml --format json --out-file infraco
   - Trigger: ogni 30s, failover dopo 3 tentativi falliti
 
 - **Se il controllo fallisce, il traffico viene reindirizzato al secondario (GCP) automaticamente**
+
+---
+
+## 🧭 Passaggio da ambiente di test a produzione
+
+- **Step 1 - Configurare l’ambiente CLI sulla propria macchina:**
+  - AWS : ```bash aws configure```
+  - GCP : ```bash gcloud auth application-default login```
+
+- **Step 2 - Attivare i provider reali:**
+Nel file `providers_prod.tf` (già incluso nel progetto), decommenta tutto il blocco e rinomina il file in `providers.tf`, sovrascrivendo o rimuovendo quello mock presente attualmente.
+
+- **Step 3 - Eseguire la pipeline Terraform:**
+Dopo aver completato la configurazione, esegui la sequenza standard per inizializzare ed applicare l’infrastruttura reale, i comandi sono disponibili nei passaggi precedenti: **🛠️ Comandi Terraform Utili**.
