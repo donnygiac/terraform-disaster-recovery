@@ -47,8 +47,8 @@ networking_secondary_firewall_rules = [
 # COMPUTE SETTINGS
 ## modules/aws/compute - AWS
 compute_primary_name          = "primary-vm-name"
-compute_primary_instance_type = "t3.medium"
-compute_primary_ami           = "ami-09454961f90c7c88c"
+compute_primary_instance_type = "m5.4xlarge"
+compute_primary_ami           = "ami-0fc5d935ebf8bc3bc"
 compute_primary_volume_size   = 1000
 compute_primary_volume_type   = "gp3"
 compute_primary_ingress_rules = [
@@ -82,10 +82,10 @@ compute_primary_egress_rules = [
 
 ## modules/google/compute - Google Cloud
 compute_secondary_name         = "secondary-vm-name"
-compute_secondary_machine_type = "e2-standard-2"
+compute_secondary_machine_type = "n2-standard-8"
 compute_secondary_image        = "projects/debian-cloud/global/images/family/debian-12"
 compute_secondary_disk_size    = 1000
-compute_secondary_disk_type    = "pd-balanced"
+compute_secondary_disk_type    = "pd-ssd"
 
 # DATABASE SETTINGS
 ## modules/aws/database - AWS
